@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 22:40:04 by amezoe            #+#    #+#             */
-/*   Updated: 2024/12/19 08:13:27 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/11/19 09:42:29 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*read_and_update_static(char *s, int fd, char *buffer)
 	int	n;
 
 	n = 1;
-	while (ft_strchr(s, '\n') == NULL && n != 0)
+	while (ft_strchrgnl(s, '\n') == NULL && n != 0)
 	{
 		n = read(fd, buffer, BUFFER_SIZE);
 		if (n == -1)
@@ -26,7 +26,7 @@ char	*read_and_update_static(char *s, int fd, char *buffer)
 			return (NULL);
 		}
 		buffer[n] = '\0';
-		s = ft_strjoin(s, buffer);
+		s = ft_strjoingnl(s, buffer);
 		if (!s)
 			return (NULL);
 	}
@@ -58,7 +58,7 @@ char	*ft_changing_static(char *s)
 		j++;
 	if (!s[j])
 		return (free(s), NULL);
-	newstring = (char *)malloc((ft_strlen(s) - j) * sizeof(char));
+	newstring = (char *)malloc((ft_strlengnl(s) - j) * sizeof(char));
 	if (!newstring)
 		return (free(s), NULL);
 	i = 0;
