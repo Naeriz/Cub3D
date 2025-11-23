@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 09:37:24 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/23 08:02:28 by amezoe           ###   ########.fr       */
+/*   Created: 2025/11/23 07:44:50 by amezoe            #+#    #+#             */
+/*   Updated: 2025/11/23 08:04:53 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int ac, char **av)
+
+//placeholder for now, todo later
+//skip the direction, trim \n then dup the path 
+int	fill_texture_path(char **texture, char *line)
 {
-	t_map	data;
+	(void)texture;
+	(void)line;
+	printf("Found texture line: %s", line);
+	return (0);
+}
 
-	if (ac != 2)
-	{
-		ft_putstr_fd("Error\nuse ./cub3D [path/to/map.cub]\n", 2);
-		return (1);
-	}
-	init_data(&data);
-	if (parse_args(&data, av) != 0)
-		return (1);
-	if (parse_data(&data) != 0)
-		return (1);
-	printf("works, map is loaded\n");
-	close(data.fd);
+//also placeholder, have to parse the actual rgb codes
+int	fill_color(int *color, char *line)
+{
+	(void)color;
+	(void)line;
+	printf("Found color line: %s", line);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:23:19 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/19 09:51:27 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/11/23 08:04:40 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	check_extension(char *path)
 {
@@ -40,4 +40,11 @@ int	parse_args(t_map *map, char **av)
 	}
 	//dont close still gonna read
 	return (0);
+}
+
+char	*skip_spaces(char *line)
+{
+	while (*line == ' ' || *line == '\t')
+		line++;
+	return (line);
 }

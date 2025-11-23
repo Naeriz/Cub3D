@@ -6,11 +6,11 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:36:07 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/19 09:37:06 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/11/23 08:04:45 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	init_textures(t_textures *textures)
 {
@@ -18,8 +18,8 @@ void	init_textures(t_textures *textures)
 	textures->south = NULL;
 	textures->west = NULL;
 	textures->east = NULL;
-	textures->floor = 0;
-	textures->ceiling = 0;
+	textures->floor =-1;
+	textures->ceiling = -1; // i messed up, we need -1 cuz 0 is rgb black
 }
 
 void	init_data(t_map *data)

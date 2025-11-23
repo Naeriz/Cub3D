@@ -6,7 +6,7 @@
 #    By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 08:54:24 by amezoe            #+#    #+#              #
-#    Updated: 2025/11/19 09:02:50 by amezoe           ###   ########.fr        #
+#    Updated: 2025/11/23 08:03:46 by amezoe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCSDIR		=	src
 
 #EXEC		=	$(EXECDIR)/placeholder.c
 
-#PARSE		=	$(PARSEDIR)/placeholder.c
+PARSE		=	$(PARSEDIR)/basic.c $(PARSEDIR)/init.c $(PARSEDIR)/parse.c \
+				$(PARSEDIR)/utils.c 
 
 SRCS		=	$(SRCSDIR)/main.c $(EXEC) $(PARSE) \
 
