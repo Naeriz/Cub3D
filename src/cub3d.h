@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/23 07:57:10 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/11/26 10:27:13 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ int	parse_data(t_map *data);
 
 int	fill_texture_path(char **texture, char *line); //temp for now have to work this
 int	fill_color(int *color, char *line); //same here
+int	check_rgb_values(int *rgb);
+void	remove_newline(char *str);
+
 
 
 

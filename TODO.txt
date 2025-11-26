@@ -1,0 +1,20 @@
+PARSE:
+
+
+-resolution values bigger than screen
+-non digit numbers
+-more than 2 values for width and height
+-texture that dont exist / not xpm file
+-multiple textures for the same wall
+-rgbs having more or less than 3 values, or out of range (0-255)
+-invalid chars in the cub
+-multiple players/no players
+-map not closed (check all sides)
+
+---idea from gleal ---
+
+tabs needs to be replaced by 4 spaces
+incase of linebreak in middle of map string we need to be able to find it (split should not be working well for this)
+we can use gnl and realloc memory to add a new string 
+
+
