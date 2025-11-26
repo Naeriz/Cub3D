@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/26 10:27:13 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/11/26 19:33:43 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,38 @@ typedef struct s_map
 	int			player_y;
 	char		player_dir; // N, E, S, W
 }	t_map;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*window;
+	void	*image;
+	int		bpp; //amount of bits on screen
+	int		endian; //0 or 1 how argb bytes organized
+	int		line_b; //width * 4
+	void	*text_north;
+	void	*text_east;
+	void	*text_south;
+	void	*text_west;
+}	t_mlx;
+
+
+typedef struct s_ray //all shits needed for raycasting math brainfuck
+{
+	double	dir_x;
+	double	dir_y;
+	double	side_x;
+	double	side_y;
+	double	delta_x;
+	double	delta_y;
+	double	wall_x;
+	double	distance;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		view_side;
+}	t_ray
 
 //basic.c
 
