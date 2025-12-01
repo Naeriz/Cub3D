@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/26 19:33:43 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/01 17:59:26 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ typedef struct s_map
 typedef struct s_mlx
 {
 	void	*mlx;
+	char	*address;
 	void	*window;
 	void	*image;
+	double	real_p_dir;
 	int		bpp; //amount of bits on screen
 	int		endian; //0 or 1 how argb bytes organized
 	int		line_b; //width * 4
@@ -66,7 +68,7 @@ typedef struct s_mlx
 
 
 typedef struct s_ray //all shits needed for raycasting math brainfuck
-{
+{ //dda for speed
 	double	dir_x;
 	double	dir_y;
 	double	side_x;

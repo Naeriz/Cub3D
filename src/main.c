@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:37:24 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/23 08:02:28 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/01 19:02:43 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_map	data;
+	t_mlx	mlx;
 
 	if (ac != 2)
 	{
@@ -28,5 +29,7 @@ int	main(int ac, char **av)
 		return (1);
 	printf("works, map is loaded\n");
 	close(data.fd);
+	init_mlx(&mlx, &data);
+	init_rays(&mlx, &data);
 	return (0);
 }
