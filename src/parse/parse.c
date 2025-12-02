@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:47:14 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/02 15:03:42 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/02 15:43:00 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	parse_data(t_map *data)
 		}
 		if (status == 2)
 		{
-			//we have the map so we stop and the parsing will deal with this.
-			free(line); //remove this when i have the implementation for parse_map, we will free it there, this is temporary
-			break ; 
+			if(parse_map(data, line))
+				return (1);
+			break;
 		}
 		free(line);
 	}
