@@ -6,11 +6,21 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:47:14 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/23 08:04:49 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/02 15:03:42 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	check_textures_filled(t_map *data)
+{
+	if (!data->textures->north || !data->textures->south
+		|| !data->textures->west || !data->textures->east)
+		return (0);
+	if (data->textures->floor == -1 || data->textures->ceiling == -1)
+		return (0);
+	return (1);
+}
 
 int	parse_line(char *line, t_map *data)
 {
@@ -33,7 +43,14 @@ int	parse_line(char *line, t_map *data)
 		return (fill_color(&data->textures->ceiling, content));
 	//check if map starts, have to check if textures are all set before this
 	if (*content == '1' || *content == '0')
+	{
+		if (!check_textures_filled(data))
+		{
+			printf("Error\nMap started before all textures were fedined\n");
+			return (1);
+		}
 		return (2);
+	}
 	return (1);
 }
 

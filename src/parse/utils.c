@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:44:50 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/26 10:27:50 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:42:06 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,27 @@ int	check_rgb_values(int *rgb)
 	return (0);
 }
 
+int	check_file_access(char *path)
+{
+	int		fd;
+	size_t	len;
+
+	len = ft_strlen(path);
+	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
+	{
+		printf("Error\nTexture must be an xpm file: %s\n", path);
+		return (1);
+	}
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("Error\nTexture file cant be found: %s\n", path);
+		return (1);
+	}
+	close(fd);
+	return (0);
+}
+
 int	fill_texture_path(char **texture, char *line)
 {
 	if (*texture != NULL)
@@ -59,6 +80,12 @@ int	fill_texture_path(char **texture, char *line)
 	if (!*texture)
 		return (1);
 	remove_newline(*texture);
+	if (check_file_access(*texture))
+	{
+		free(*texture);
+		*texture = NULL;
+		return(1);
+	}
 	return (0);
 }
 
