@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   meth.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/02 14:05:39 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/06 17:39:22 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-mlx_new_window()
-mlx_destroy_display(mlx->mlx)
-init_textures
+// mlx_new_window()
+// mlx_destroy_display(mlx->mlx)
+// init_textures
 
 //dont ask I dont fucking know anymore big meth
 //dda prep
-void	init_struct_ray(t_ray *ray, t_map *data, double ray_angle)
+void	init_struct_ray(t_mlx *mlx, t_ray *ray, t_map *data, double ray_angle)
 {
+	ray->mlx = *mlx;
 	ray->dir_x = cos(ray_angle);
 	ray->dir_y = sin(ray_angle);
 	ray->map_x = (int)data->player_x;
@@ -44,16 +45,124 @@ void	init_struct_ray(t_ray *ray, t_map *data, double ray_angle)
 	}
 }
 
-void	draw_column(t_map *data, int col, double distance, double side)
+void	my_mlx_pixel_put(t_map *data, int x, int y, int color)
 {
+	char *dest;
 	
+	dest = data->mlx.address + (y * data->mlx.line_b + x * (data->mlx.bpp / 8)); //gives mem adress position of what pixel
+	*(unsigned int *)dest = color; //* before unsig int makes only change to value
 }
 
-double	ray_checker(t_mlx *mlx, t_maps *data, double ray_angle, double *side)
+void	visible_height(t_map *data, double *step, double *pos, double height)
+{
+	int	draw_s;
+	int	draw_e;
+	
+	data->wall_s = (800 - height) / 2;
+	data->wall_e = (data->wall_s + height);
+	draw_s = fmax(data->wall_s, 0); //to not draw above or below
+	draw_e = fmin(data->wall_e, 800);
+	if (draw_e <= draw_s)
+	{
+		data->wall_s = 0;
+		data->wall_e = 0;
+		return ;
+	}
+	data->wall_s = draw_s;
+	data->wall_e = draw_e;
+	// *step = //later
+	// *pos = (draw_s - data->wall_s) * (*step);
+}
+
+void	render_vertical(t_map *data, int col, double height, double side)
+{
+	double	step;
+	double	pos;
+	int		y;
+
+	visible_height(data, &step, &pos, height);
+	y = 0;
+	while (y < 800)
+	{
+		if (y < data->wall_s)
+			my_mlx_pixel_put(data, col, y, data->textures->floor);
+		else if (y < data->wall_e)
+			my_mlx_pixel_put(data, col, y, 255);
+		else
+			my_mlx_pixel_put(data, col, y, data->textures->ceiling);
+		y++;
+	}
+}
+
+void	draw_column(t_map *data, int col, double distance, double side)
+{
+	double	height;
+	
+	height = 800 / distance;
+	if (distance <= 0) //we r at wall
+		height = 800;
+	if (height < 1)//if wall too far away min height for wall
+		height = 1;
+	render_vertical(data, col, height, side);
+}
+
+//make ray go forward 1 grid a time
+void	dda_step(t_ray *ray)
+{
+	if (ray->side_x < ray->side_y)
+	{
+		ray->side_x = ray->side_x + ray->delta_x;
+		ray->map_x = ray->map_x + ray->step_x;
+		ray->view_side = 0;
+	}
+	else
+	{
+		ray->side_y = ray->side_y + ray->delta_y;
+		ray->map_y = ray->map_y + ray->step_y;
+		ray->view_side = 1;
+	}
+}
+
+double	final_distance(t_ray *ray, t_map *data, double ray_angle, double *side)
+{
+	int	wall; //norminette rayviewside too long
+
+	wall = ray->view_side;
+	if (ray->view_side == 0)
+	{
+		ray->distance = (ray->map_x - data->player_x
+			+ (1 - ray->step_x) / 2) / ray->dir_x; //to see if ray approach from left or right
+		ray->wall_x = data->player_y + ray->dir_y * ray->distance; //textures
+	}
+	else
+	{
+		ray->distance = (ray->map_y - data->player_y
+			+ (1 - ray->step_y) / 2) / ray->dir_y; //above or under
+		ray->wall_x = data->player_x + ray->dir_x * ray->distance;
+	}
+	ray->wall_x = ray->wall_x - floor(ray->wall_x); //floor retardus makes for example 20.97 into 0.97, for tetxures bcs work w 0 to 1
+	if ((wall == 0 && ray->step_x == -1) || (wall == 1 && ray->step_y == -1))//if u look north w cube infront, u look at south part of cube
+		ray->wall_x = 1 - ray->wall_x;
+	*side = ray->wall_x;
+	return (ray->distance * cos(ray_angle - ray->mlx.real_p_dir)); //fisheye bcs not same length rays, cos make sides shorter = normal vision
+}
+
+//each ray one by one
+//checks if out of map or found wall
+double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 {
 	t_ray ray;
 	
-	init_struct_ray(&ray, data, ray_angle);
+	init_struct_ray(mlx, &ray, data, ray_angle);
+	while (1)
+	{
+		dda_step(&ray);
+		if (ray.map_y >= data->height || ray.map_x >= ft_strlen(data->map[ray.map_y]))
+			return (-1);
+		if (data->map[ray.map_y][ray.map_x] == '1')
+			break ;			
+	}
+	return (final_distance(&ray, data, ray_angle, side));
 }
 
 double	convert_dir(char dir)
@@ -68,30 +177,30 @@ double	convert_dir(char dir)
 		ret = (M_PI / 2);
 	if (dir == 'W')
 		ret = M_PI;
-	return (ret)
+	return (ret);
 }
 
-void	init_rays(t_mlx *mlx, t_maps *data)
+//double alot more precise than float(more nr behind ,)
+void	init_rays(t_mlx *mlx, t_map *data)
 {
 	double	fov;
 	double	distance;
 	double	side;
-	double 	ray_angle;
+	double	ray_angle;
 	int		col; //which column we at. left to right
 	
 	fov = 72 * (M_PI / 180);
-	ray_angle = mlx->real_p_dir - (fov / 2); //radian meth
+	ray_angle = mlx->real_p_dir - (fov / 2); //make start at left edge w radian meth
 	col = 0;
-	
-	while (col < 1000)
+	while (col < 1000) //throws rays
 	{
-		distance = ray_checker(mlx, data, ray_angle, &side); //side mod in func
+		distance = ray_checker(mlx, data, ray_angle, &side); //side mod in func 
 		if (distance != -1)
 			draw_column(data, col, distance, side);
 		ray_angle += fov / data->width;
 		col++;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0 , 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0, 0);
 }
 
 void	init_mlx(t_mlx *mlx, t_map *data)
@@ -129,8 +238,8 @@ void	graphic_init(t_mlx *mlx)
 		free(mlx->mlx);
 		exit(1);
 	}
-	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bpp, 
-		&mlx->endian, &mlx->line_b);
+	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bpp,
+			&mlx->endian, &mlx->line_b);
 	if (!mlx->address)
 	{
 		write(2, "Error\n", 6);
