@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:37:24 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/01 19:02:43 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/07 17:59:50 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	main(int ac, char **av)
 	close(data.fd);
 	init_mlx(&mlx, &data);
 	init_rays(&mlx, &data);
+	mlx_loop(mlx.mlx);
 	return (0);
 }

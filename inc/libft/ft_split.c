@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:00:23 by amezoe            #+#    #+#             */
-/*   Updated: 2024/11/26 16:26:45 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/07 18:05:50 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*cpystr(const char *s, int start, int end)
 	return (tab);
 }
 
-void	free_tab(char **tab, int count)
+void	free_tabb(char **tab, int count)
 {
 	int	i;
 
@@ -86,7 +86,7 @@ char	**assign_strings(char **tab, const char *s, char c)
 				i++;
 			tab[index] = cpystr(s, start, i);
 			if (!tab[index])
-				return (free_tab(tab, index), NULL);
+				return (free_tabb(tab, index), NULL);
 			index++;
 		}
 		else

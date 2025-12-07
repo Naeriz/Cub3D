@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/06 17:39:22 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/07 18:07:40 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	visible_height(t_map *data, double *step, double *pos, double height)
 	data->wall_s = draw_s;
 	data->wall_e = draw_e;
 	// *step = //later
+	(void) step;
+	(void) pos;
 	// *pos = (draw_s - data->wall_s) * (*step);
 }
 
@@ -92,6 +94,7 @@ void	render_vertical(t_map *data, int col, double height, double side)
 			my_mlx_pixel_put(data, col, y, data->textures->ceiling);
 		y++;
 	}
+	(void) side;
 }
 
 void	draw_column(t_map *data, int col, double distance, double side)
@@ -157,7 +160,7 @@ double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 	while (1)
 	{
 		dda_step(&ray);
-		if (ray.map_y >= data->height || ray.map_x >= ft_strlen(data->map[ray.map_y]))
+		if (ray.map_y >= data->height || ray.map_x >= (int)ft_strlen(data->map[ray.map_y]))
 			return (-1);
 		if (data->map[ray.map_y][ray.map_x] == '1')
 			break ;			
@@ -192,6 +195,7 @@ void	init_rays(t_mlx *mlx, t_map *data)
 	fov = 72 * (M_PI / 180);
 	ray_angle = mlx->real_p_dir - (fov / 2); //make start at left edge w radian meth
 	col = 0;
+	data->mlx = *mlx;
 	while (col < 1000) //throws rays
 	{
 		distance = ray_checker(mlx, data, ray_angle, &side); //side mod in func 
@@ -201,29 +205,6 @@ void	init_rays(t_mlx *mlx, t_map *data)
 		col++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0, 0);
-}
-
-void	init_mlx(t_mlx *mlx, t_map *data)
-{
-	mlx->mlx = mlx_init();
-	if (!mlx->mlx)
-	{
-		write(2, "Error\n", 6);
-		write(2, "mlx ain't init :c\n", 18);
-		exit(1);
-	}
-	mlx->window = mlx_new_window(mlx->mlx, 1000, 800, "cub3d");
-	if (!mlx->window)
-	{
-		write(2, "Error\n", 6);
-		write(2, "window ain't windowing :c\n", 26);
-		mlx_destroy_display(mlx->mlx);
-		free(mlx->mlx);
-		exit(1);
-	}
-	//init_textures(mlx, data);
-	mlx->real_p_dir = convert_dir(data->player_dir);
-	graphic_init(mlx);
 }
 
 void	graphic_init(t_mlx *mlx)
@@ -251,3 +232,27 @@ void	graphic_init(t_mlx *mlx)
 		exit(1);
 	}
 }
+
+void	init_mlx(t_mlx *mlx, t_map *data)
+{
+	mlx->mlx = mlx_init();
+	if (!mlx->mlx)
+	{
+		write(2, "Error\n", 6);
+		write(2, "mlx ain't init :c\n", 18);
+		exit(1);
+	}
+	mlx->window = mlx_new_window(mlx->mlx, 1000, 800, "cub3d");
+	if (!mlx->window)
+	{
+		write(2, "Error\n", 6);
+		write(2, "window ain't windowing :c\n", 26);
+		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
+		exit(1);
+	}
+	//init_textures(mlx, data);
+	mlx->real_p_dir = convert_dir(data->player_dir);
+	graphic_init(mlx);
+}
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/02 15:14:29 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/07 18:01:13 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ typedef struct s_textures
 	unsigned long	hex_ceiling;
 }	t_textures;
 
-typedef struct s_map
-{
-	char		**map;
-	int			height;
-	int			width;
-	int			fd;
-	int			line_count;
-	char		*path;
-	t_textures	*textures;
-	double		player_x;
-	double		player_y;
-	char		player_dir; // N, E, S, W
-}	t_map;
-
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -66,16 +52,35 @@ typedef struct s_mlx
 	void	*text_west;
 }	t_mlx;
 
+typedef struct s_map
+{
+	char		**map;
+	t_mlx		mlx;
+	int			height;
+	int			width;
+	int			fd;
+	int			line_count;
+	char		*path;
+	t_textures	*textures;
+	double		player_x;
+	double		player_y;
+	char		player_dir; // N, E, S, W
+	int			wall_s; //beginn wall
+	int			wall_e; //end wall
+}	t_map;
+
+
 
 typedef struct s_ray //all shits needed for raycasting math brainfuck
 { //dda for speed
+	t_mlx	mlx;
 	double	dir_x;
 	double	dir_y;
 	double	side_x;
 	double	side_y;
 	double	delta_x;
 	double	delta_y;
-	double	wall_x;
+	double	wall_x; //how much wall hit w ray
 	double	distance;
 	int		map_x;
 	int		map_y;
@@ -130,4 +135,7 @@ void	free_textures(t_textures *textures);
 void	free_data(t_map *data);
 int		exit_error(t_map *data, char *msg);
 
+//exec
+void	init_mlx(t_mlx *mlx, t_map *data);
+void	init_rays(t_mlx *mlx, t_map *data);
 #endif
