@@ -76,7 +76,6 @@ int	parse_data(t_map *data)
 				return (1);
 			break;
 		}
-		free(line);
 	}
 	return (0);
 }

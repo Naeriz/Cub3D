@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/07 18:07:40 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/07 18:31:21 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void	visible_height(t_map *data, double *step, double *pos, double height)
 		data->wall_e = 0;
 		return ;
 	}
+	*step = 96 / height;
+	*pos = (draw_s - data->wall_s) * (*step);
+	*pos = fmax(*pos, 0);
+	*pos = fmin(*pos, 96 - 1);
 	data->wall_s = draw_s;
 	data->wall_e = draw_e;
-	// *step = //later
-	(void) step;
-	(void) pos;
-	// *pos = (draw_s - data->wall_s) * (*step);
 }
 
 void	render_vertical(t_map *data, int col, double height, double side)
@@ -87,11 +87,11 @@ void	render_vertical(t_map *data, int col, double height, double side)
 	while (y < 800)
 	{
 		if (y < data->wall_s)
-			my_mlx_pixel_put(data, col, y, data->textures->floor);
-		else if (y < data->wall_e)
-			my_mlx_pixel_put(data, col, y, 255);
-		else
 			my_mlx_pixel_put(data, col, y, data->textures->ceiling);
+		else if (y < data->wall_e)
+			my_mlx_pixel_put(data, col, y, 1082434);
+		else
+			my_mlx_pixel_put(data, col, y, data->textures->floor);
 		y++;
 	}
 	(void) side;
@@ -155,7 +155,7 @@ double	final_distance(t_ray *ray, t_map *data, double ray_angle, double *side)
 double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 {
 	t_ray ray;
-	
+
 	init_struct_ray(mlx, &ray, data, ray_angle);
 	while (1)
 	{
@@ -174,11 +174,11 @@ double	convert_dir(char dir)
 
 	if (dir == 'N')
 		ret = 3 * M_PI / 2;
-	if (dir == 'E')
+	else if (dir == 'E')
 		ret = 0;
-	if (dir == 'S')
+	else if (dir == 'S')
 		ret = (M_PI / 2);
-	if (dir == 'W')
+	else if (dir == 'W')
 		ret = M_PI;
 	return (ret);
 }
@@ -198,10 +198,10 @@ void	init_rays(t_mlx *mlx, t_map *data)
 	data->mlx = *mlx;
 	while (col < 1000) //throws rays
 	{
-		distance = ray_checker(mlx, data, ray_angle, &side); //side mod in func 
+		distance = ray_checker(mlx, data, ray_angle, &side); //side mod in func
 		if (distance != -1)
 			draw_column(data, col, distance, side);
-		ray_angle += fov / data->width;
+		ray_angle += fov / 1000;
 		col++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0, 0);
@@ -220,7 +220,7 @@ void	graphic_init(t_mlx *mlx)
 		exit(1);
 	}
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bpp,
-			&mlx->endian, &mlx->line_b);
+			&mlx->line_b, &mlx->endian);
 	if (!mlx->address)
 	{
 		write(2, "Error\n", 6);

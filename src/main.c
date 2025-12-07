@@ -29,6 +29,14 @@ int	main(int ac, char **av)
 		return (1);
 	printf("works, map is loaded\n");
 	close(data.fd);
+	printf("	---MAP INFO---	\n");
+	printf("	height = %d\n", data.height);
+	printf("	width = %d\n", data.width);
+	printf("	player_x = %f\n", data.player_x);
+	printf("	player_y = %f\n", data.player_y);
+	printf("	Direction = %c\n", data.player_dir);
+	printf("	Ceiling color = %d\n", data.textures->ceiling);
+	printf("	Floor color = %d\n\n", data.textures->floor);
 	init_mlx(&mlx, &data);
 	init_rays(&mlx, &data);
 	mlx_loop(mlx.mlx);
