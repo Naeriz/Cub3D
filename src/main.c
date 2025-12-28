@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:37:24 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/26 17:55:03 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/28 16:37:32 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	main(int ac, char **av)
 	printf("	Floor color = %d\n\n", data.textures->floor);
 	init_mlx(&mlx, &data);
 	init_rays(&mlx, &data);
-	mlx_hook(mlx.window, 2, 1L << 0, key_detect, &data);
+	mlx_hook(mlx.window, 2, 1L << 0, key_press, &data);
+	mlx_hook(mlx.window, 3, 1L << 1, key_release, &data);
+	mlx_hook(mlx.window, 17, 1L << 17, close_window, &data);
+	mlx_loop_hook(mlx.mlx, key_detect, &data);
 	mlx_loop(mlx.mlx);
 	return (0);
 }

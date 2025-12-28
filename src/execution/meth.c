@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/28 16:04:26 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/28 16:42:54 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // mlx_new_window()
 // mlx_destroy_display(mlx->mlx)
 // init_textures
-//close_window
 
 int close_window(t_map *data)
 {
@@ -23,15 +22,55 @@ int close_window(t_map *data)
 	exit(0);
 }
 
-int	key_detect(int key, t_map *data)
+int	key_detect(t_map *data)
 {
-	printf("%d\n", key);
+	if (data->w == 0)
+		change_checker(W, data);
+	else if (data->s == 0)
+		change_checker(S, data);
+	else if (data->d == 0)
+		change_checker(D, data);
+	else if (data->a == 0)
+		change_checker(A, data);
+	if (data->r_fov == 0)
+		foven(R_FOV, data);
+	else if (data->l_fov == 0)
+		foven(L_FOV, data);
+	return (0);
+}
+
+int	key_press(int key, t_map *data)
+{
 	if (key == ESCAPE)
 		close_window(data);
-	if (key == W || key == S || key == D || key == A)
-		change_checker(key, data);
-	if (key == L_FOV || key == R_FOV)
-		foven(key, data);
+	if (key == W)
+		data->w = 0;
+	else if (key == A)
+		data->a = 0;
+	else if (key == S)
+		data->s = 0;
+	else if (key == D)
+		data->d = 0;
+	else if (key == R_FOV)
+		data->r_fov = 0;
+	else if (key == L_FOV)
+		data->l_fov = 0;
+	return (0);
+}
+int key_release(int key, t_map *data)
+{
+	if (key == W)
+		data->w = 1;
+	else if (key == A)
+		data->a = 1;
+	else if (key == S)
+		data->s = 1;
+	else if (key == D)
+		data->d = 1;
+	else if (key == R_FOV)
+		data->r_fov = 1;
+	else if (key == L_FOV)
+		data->l_fov = 1;
 	return (0);
 }
 

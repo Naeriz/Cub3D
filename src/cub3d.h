@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/28 16:00:17 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/28 16:44:07 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ typedef struct s_map
 	char		player_dir; // N, E, S, W
 	int			wall_s; //beginn wall
 	int			wall_e; //end wall
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			r_fov;
+	int			l_fov;
 }	t_map;
 
 
@@ -146,7 +152,10 @@ int		exit_error(t_map *data, char *msg);
 //exec
 void	init_mlx(t_mlx *mlx, t_map *data);
 void	init_rays(t_mlx *mlx, t_map *data);
-int		key_detect(int key, t_map *data);
+int		key_detect(t_map *data);
+int		key_press(int key, t_map *data);
+int		key_release(int key, t_map *data);
+int		close_window(t_map *data);
 
 //mover
 void	change_checker(int key, t_map *data);

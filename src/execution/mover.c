@@ -60,7 +60,7 @@ void	change_checker(int key, t_map *data)
 	data->player_y += temp_y;
 	printf("%f\n", data->player_y);
 	printf("%f\n", data->player_x);
-	if (data->player_y < 1 || data->player_y > data->height - 1 || data->player_x < 1 || data->player_x > ft_strlen(data->map[(int)data->player_y]))
+	if (data->player_y < 1 || data->player_y > data->height - 1 || data->player_x < 1 || data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.2)
 	{
 		printf("WAAA\n");
 		data->player_x = temp_x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:36:07 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/23 08:04:45 by amezoe           ###   ########.fr       */
+/*   Updated: 2025/12/28 16:46:25 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void	init_data(t_map *data)
 	data->player_x = 0;
 	data->player_y = 0;
 	data->player_dir = 0;
-	
+	data->w = 1;
+	data->a = 1;
+	data->s = 1;
+	data->d = 1;
+	data->r_fov = 1;
+	data->l_fov = 1;
 	data->textures = malloc(sizeof(t_textures));
 	if (!data->textures)
 	{
