@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/07 18:01:13 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/28 16:00:17 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESCAPE 65307
+# define L_FOV 65361
+# define R_FOV 65363
 
 
 //parse structs
@@ -39,10 +47,10 @@ typedef struct s_textures
 typedef struct s_mlx
 {
 	void	*mlx;
-	char	*address;
+	char	*address; //which screen
 	void	*window;
 	void	*image;
-	double	real_p_dir;
+	double	real_p_dir; //radian
 	int		bpp; //amount of bits on screen
 	int		endian; //0 or 1 how argb bytes organized
 	int		line_b; //width * 4
@@ -138,4 +146,9 @@ int		exit_error(t_map *data, char *msg);
 //exec
 void	init_mlx(t_mlx *mlx, t_map *data);
 void	init_rays(t_mlx *mlx, t_map *data);
+int		key_detect(int key, t_map *data);
+
+//mover
+void	change_checker(int key, t_map *data);
+void	foven(int key, t_map *data);
 #endif

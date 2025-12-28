@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/07 18:31:21 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/28 16:04:26 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 // mlx_new_window()
 // mlx_destroy_display(mlx->mlx)
 // init_textures
+//close_window
+
+int close_window(t_map *data)
+{
+	(void) data;
+	exit(0);
+}
+
+int	key_detect(int key, t_map *data)
+{
+	printf("%d\n", key);
+	if (key == ESCAPE)
+		close_window(data);
+	if (key == W || key == S || key == D || key == A)
+		change_checker(key, data);
+	if (key == L_FOV || key == R_FOV)
+		foven(key, data);
+	return (0);
+}
 
 //dont ask I dont fucking know anymore big meth
 //dda prep
@@ -163,7 +182,7 @@ double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 		if (ray.map_y >= data->height || ray.map_x >= (int)ft_strlen(data->map[ray.map_y]))
 			return (-1);
 		if (data->map[ray.map_y][ray.map_x] == '1')
-			break ;			
+			break ;	
 	}
 	return (final_distance(&ray, data, ray_angle, side));
 }
