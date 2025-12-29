@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/28 16:44:07 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/29 17:58:04 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdint.h>
 
 # define W 119
 # define A 97
@@ -47,7 +48,7 @@ typedef struct s_textures
 typedef struct s_mlx
 {
 	void	*mlx;
-	char	*address; //which screen
+	char	*address; //which image
 	void	*window;
 	void	*image;
 	double	real_p_dir; //radian
@@ -58,6 +59,14 @@ typedef struct s_mlx
 	void	*text_east;
 	void	*text_south;
 	void	*text_west;
+	char	*north_adr;
+	char	*east_adr;
+	char	*south_adr;
+	char	*west_adr;
+	int		img_wdth;
+	int		img_hght;
+	int		angle_x;
+	int		angle_y;
 }	t_mlx;
 
 typedef struct s_map
@@ -156,8 +165,14 @@ int		key_detect(t_map *data);
 int		key_press(int key, t_map *data);
 int		key_release(int key, t_map *data);
 int		close_window(t_map *data);
+void	my_mlx_pixel_put(t_map *data, int x, int y, int color);
 
 //mover
 void	change_checker(int key, t_map *data);
 void	foven(int key, t_map *data);
+
+//textures
+void	textures_init(t_mlx *mlx, t_map *data);
+void	get_wall_dir(t_map *data, t_ray ray);
+void	apply_text(t_map *data, int col, int y, double pos);
 #endif

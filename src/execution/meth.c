@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/28 16:42:54 by sionow           ###   ########.fr       */
+/*   Updated: 2025/12/29 17:56:34 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 // mlx_new_window()
 // mlx_destroy_display(mlx->mlx)
-// init_textures
 
 int close_window(t_map *data)
 {
@@ -141,18 +140,22 @@ void	render_vertical(t_map *data, int col, double height, double side)
 	int		y;
 
 	visible_height(data, &step, &pos, height);
+	data->mlx.angle_x = (int)(side * data->mlx.img_wdth);
 	y = 0;
 	while (y < 800)
 	{
 		if (y < data->wall_s)
 			my_mlx_pixel_put(data, col, y, data->textures->ceiling);
 		else if (y < data->wall_e)
-			my_mlx_pixel_put(data, col, y, 1082434);
+		{
+			apply_text(data, col, y, pos);
+			pos += step;
+			pos = fmin(pos, data->mlx.img_hght - 1);
+		}
 		else
 			my_mlx_pixel_put(data, col, y, data->textures->floor);
 		y++;
 	}
-	(void) side;
 }
 
 void	draw_column(t_map *data, int col, double distance, double side)
@@ -223,6 +226,7 @@ double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 		if (data->map[ray.map_y][ray.map_x] == '1')
 			break ;	
 	}
+	get_wall_dir(data, ray); //to get right texture
 	return (final_distance(&ray, data, ray_angle, side));
 }
 
@@ -294,6 +298,10 @@ void	graphic_init(t_mlx *mlx)
 void	init_mlx(t_mlx *mlx, t_map *data)
 {
 	mlx->mlx = mlx_init();
+	mlx->north_adr = NULL;
+	mlx->east_adr = NULL;
+	mlx->south_adr = NULL;
+	mlx->west_adr = NULL;
 	if (!mlx->mlx)
 	{
 		write(2, "Error\n", 6);
@@ -312,5 +320,6 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 	//init_textures(mlx, data);
 	mlx->real_p_dir = convert_dir(data->player_dir);
 	graphic_init(mlx);
+	textures_init(mlx, data);
 }
 
