@@ -6,11 +6,52 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/29 16:58:25 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 20:25:52 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+double	convert_dir(char dir)
+{
+	double	ret;
+
+	if (dir == 'N')
+		ret = 3 * M_PI / 2;
+	else if (dir == 'E')
+		ret = 0;
+	else if (dir == 'S')
+		ret = (M_PI / 2);
+	else if (dir == 'W')
+		ret = M_PI;
+	return (ret);
+}
+
+int	key_detect(t_map *data)
+{
+	if (data->w == 0)
+		change_checker(W, data);
+	else if (data->s == 0)
+		change_checker(S, data);
+	else if (data->d == 0)
+		change_checker(D, data);
+	else if (data->a == 0)
+		change_checker(A, data);
+	if (data->r_fov == 0)
+		foven(R_FOV, data);
+	else if (data->l_fov == 0)
+		foven(L_FOV, data);
+	if (data->start == 0)
+	{
+		mlx_destroy_image(data->mlx.mlx, data->mlx.image);
+		data->mlx.image = mlx_new_image(data->mlx.mlx, 1000, 800);
+		data->mlx.address = mlx_get_data_addr(data->mlx.image, &data->mlx.bpp,
+				&data->mlx.line_b, &data->mlx.endian);
+		init_rays(&data->mlx, data);
+		data->start++;
+	}
+	return (0);
+}
 
 void	foven(int key, t_map *data)
 {
@@ -72,9 +113,10 @@ void	change_checker(int key, t_map *data)
 	data->player_y += temp_y;
 	printf("%f\n", data->player_y);
 	printf("%f\n", data->player_x);
-	if (data->player_y < 1 || data->player_y > data->height - 1 || data->player_x < 1 || data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.2)
+	if (data->player_y < 1 || data->player_y > data->height - 1
+		|| data->player_x < 1
+		|| data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.2)
 	{
-		printf("WAAA\n");
 		data->player_x = temp_x;
 		data->player_y = temp_y;
 		return ;
