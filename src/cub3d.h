@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/29 17:58:04 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 19:48:03 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_map
 	int			d;
 	int			r_fov;
 	int			l_fov;
+	int			start;
 }	t_map;
 
 

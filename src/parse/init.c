@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:36:07 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/28 16:46:25 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 19:48:12 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_data(t_map *data)
 	data->d = 1;
 	data->r_fov = 1;
 	data->l_fov = 1;
+	data->start = 0;
 	data->textures = malloc(sizeof(t_textures));
 	if (!data->textures)
 	{

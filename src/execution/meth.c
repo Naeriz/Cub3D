@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2025/12/29 17:56:34 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 20:07:40 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ int	key_detect(t_map *data)
 		foven(R_FOV, data);
 	else if (data->l_fov == 0)
 		foven(L_FOV, data);
+	if (data->start == 0)
+	{
+		mlx_destroy_image(data->mlx.mlx, data->mlx.image);
+		data->mlx.image = mlx_new_image(data->mlx.mlx, 1000, 800);
+		data->mlx.address = mlx_get_data_addr(data->mlx.image, &data->mlx.bpp,
+			&data->mlx.line_b, &data->mlx.endian);
+		init_rays(&data->mlx, data);
+		data->start++;
+	}
 	return (0);
 }
 
@@ -125,7 +134,7 @@ void	visible_height(t_map *data, double *step, double *pos, double height)
 		data->wall_e = 0;
 		return ;
 	}
-	*step = 96 / height;
+	*step = data->mlx.img_hght / height;
 	*pos = (draw_s - data->wall_s) * (*step);
 	*pos = fmax(*pos, 0);
 	*pos = fmin(*pos, 96 - 1);
@@ -254,7 +263,7 @@ void	init_rays(t_mlx *mlx, t_map *data)
 	double	ray_angle;
 	int		col; //which column we at. left to right
 	
-	fov = 72 * (M_PI / 180);
+	fov = 60 * (M_PI / 180);
 	ray_angle = mlx->real_p_dir - (fov / 2); //make start at left edge w radian meth
 	col = 0;
 	data->mlx = *mlx;
