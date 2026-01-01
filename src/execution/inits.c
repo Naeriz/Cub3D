@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:12:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/01 20:31:59 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 20:56:46 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ void	init_rays(t_mlx *mlx, t_map *data)
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0, 0);
 }
 
-void	graphic_init(t_mlx *mlx)
+void	graphic_init(t_mlx *mlx, t_map *data)
 {
 	mlx->image = mlx_new_image(mlx->mlx, 1000, 800);
 	if (!mlx->image)
 	{
-		write(2, "Error\n", 6);
-		write(2, "image ain't imaging :c\n", 23);
+		write(2, "Error: image ain't imaging :c\n", 30);
 		mlx_destroy_window(mlx->mlx, mlx->window);
 		mlx_destroy_display(mlx->mlx);
+		free_map(data->map);
 		free(mlx->mlx);
 		exit(1);
 	}
@@ -81,11 +81,11 @@ void	graphic_init(t_mlx *mlx)
 			&mlx->line_b, &mlx->endian);
 	if (!mlx->address)
 	{
-		write(2, "Error\n", 6);
-		write(2, "image ain't imaging :c\n", 23);
+		write(2, "Error: image ain't imaging :c\n", 30);
 		mlx_destroy_image(mlx->mlx, mlx->image);
 		mlx_destroy_window(mlx->mlx, mlx->window);
 		mlx_destroy_display(mlx->mlx);
+		free_map(data->map);
 		free(mlx->mlx);
 		exit(1);
 	}
@@ -100,21 +100,21 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 	mlx->west_adr = NULL;
 	if (!mlx->mlx)
 	{
-		write(2, "Error\n", 6);
-		write(2, "mlx ain't init :c\n", 18);
+		write(2, "Error: mlx ain't init :c\n", 25);
+		free_map(data->map);
 		exit(1);
 	}
 	mlx->window = mlx_new_window(mlx->mlx, 1000, 800, "cub3d");
 	if (!mlx->window)
 	{
-		write(2, "Error\n", 6);
-		write(2, "window ain't windowing :c\n", 26);
+		write(2, "Error: window ain't windowing :c\n", 33);
 		mlx_destroy_display(mlx->mlx);
+		free_map(data->map);
 		free(mlx->mlx);
 		exit(1);
 	}
 	//init_textures(mlx, data);
 	mlx->real_p_dir = convert_dir(data->player_dir);
-	graphic_init(mlx);
+	graphic_init(mlx, data);
 	textures_init(mlx, data);
 }

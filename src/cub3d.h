@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/01 19:48:03 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 20:57:07 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,21 +159,40 @@ void	free_textures(t_textures *textures);
 void	free_data(t_map *data);
 int		exit_error(t_map *data, char *msg);
 
-//exec
-void	init_mlx(t_mlx *mlx, t_map *data);
-void	init_rays(t_mlx *mlx, t_map *data);
+//meth.c
+void	visible_height(t_map *data, double *step, double *pos, double height);
+void	render_vertical(t_map *data, int col, double height, double side);
+void	dda_step(t_ray *ray);
+double	final_distance(t_ray *ray, t_map *data, double ray_angle, double *side);
+double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side);
+
+//mover.c
+double	convert_dir(char dir);
 int		key_detect(t_map *data);
+void	foven(int key, t_map *data);
+void	change_pos(int key, t_map *data);
+void	change_checker(int key, t_map *data);
+
+//textures.c
+void	apply_text(t_map *data, int col, int y, double pos);
+void	get_wall_dir(t_map *data, t_ray ray);
+void	getadr(t_mlx *mlx, t_map *data);
+void	textures_init(t_mlx *mlx, t_map *data);
+
+//inits.c
+void	init_struct_ray(t_mlx *mlx, t_ray *ray, t_map *data, double ray_angle);
+void	init_rays(t_mlx *mlx, t_map *data);
+void	graphic_init(t_mlx *mlx, t_map *data);
+void	init_mlx(t_mlx *mlx, t_map *data);
+
+//normi_dump.c
+void	free_all(t_mlx *mlx, t_map *data);
+void	free_map(char **map);
+int		close_window(t_map *data);
 int		key_press(int key, t_map *data);
 int		key_release(int key, t_map *data);
-int		close_window(t_map *data);
+
+//mlx_draw.c
 void	my_mlx_pixel_put(t_map *data, int x, int y, int color);
-
-//mover
-void	change_checker(int key, t_map *data);
-void	foven(int key, t_map *data);
-
-//textures
-void	textures_init(t_mlx *mlx, t_map *data);
-void	get_wall_dir(t_map *data, t_ray ray);
-void	apply_text(t_map *data, int col, int y, double pos);
+void	draw_column(t_map *data, int col, double distance, double side);
 #endif

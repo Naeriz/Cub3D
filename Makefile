@@ -6,7 +6,7 @@
 #    By: sionow <sionow@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 08:54:24 by amezoe            #+#    #+#              #
-#    Updated: 2025/12/29 17:54:35 by sionow           ###   ########.fr        #
+#    Updated: 2026/01/01 20:55:30 by sionow           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ PARSEDIR	=	src/parse
 SRCSDIR		=	src
 
 
-EXEC		=	$(EXECDIR)/meth.c $(EXECDIR)/mover.c $(EXECDIR)/textures.c
+EXEC		=	$(EXECDIR)/meth.c $(EXECDIR)/mover.c $(EXECDIR)/textures.c $(EXECDIR)/inits.c $(EXECDIR)/normi_dump.c $(EXECDIR)/mlx_draw.c
 
 PARSE		=	$(PARSEDIR)/basic.c $(PARSEDIR)/init.c $(PARSEDIR)/parse.c \
 				$(PARSEDIR)/utils.c $(PARSEDIR)/parse_map.c $(PARSEDIR)/validate.c \

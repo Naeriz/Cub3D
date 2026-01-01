@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/01 20:31:35 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 21:14:46 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	get_wall_dir(t_map *data, t_ray ray)
 
 void	getadr(t_mlx *mlx, t_map *data)
 {
-	printf("EE");
 	mlx->north_adr = mlx_get_data_addr(mlx->text_north, &mlx->bpp,
 			&mlx->line_b, &mlx->endian);
 	mlx->east_adr = mlx_get_data_addr(mlx->text_east, &mlx->bpp,
@@ -71,7 +70,10 @@ void	getadr(t_mlx *mlx, t_map *data)
 			&mlx->line_b, &mlx->endian);
 	if (!mlx->north_adr || !mlx->east_adr || !mlx->south_adr
 		|| !mlx->west_adr)
-		exit(1); //free later
+	{
+		free_all(mlx, data);
+		exit(1);
+	}
 	(void) data;
 }
 
@@ -87,6 +89,9 @@ void	textures_init(t_mlx *mlx, t_map *data)
 			&mlx->img_wdth, &mlx->img_hght);
 	if (!mlx->text_north || !mlx->text_east || !mlx->text_south
 		|| !mlx->text_west)
-		exit(1); //add free
+	{
+		free_all(mlx, data);
+		exit(1);
+	}
 	getadr(mlx, data);
 }

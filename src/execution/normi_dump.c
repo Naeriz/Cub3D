@@ -6,15 +6,50 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:15:33 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/01 20:26:34 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 21:13:48 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+void	free_all(t_mlx *mlx, t_map *data)
+{
+	if (mlx->text_north)
+		mlx_destroy_image(mlx->mlx, mlx->text_north);
+	if (mlx->text_east)
+		mlx_destroy_image(mlx->mlx, mlx->text_east);
+	if (mlx->text_south)
+		mlx_destroy_image(mlx->mlx, mlx->text_south);
+	if (mlx->text_west)
+		mlx_destroy_image(mlx->mlx, mlx->text_west);
+	mlx_destroy_image(mlx->mlx, mlx->image);
+	mlx_destroy_window(mlx->mlx, mlx->window);
+	mlx_destroy_display(mlx->mlx);
+	free(mlx->mlx);
+	free(data->textures->north);
+	free(data->textures->east);
+	free(data->textures->south);
+	free(data->textures->west);
+	free(data->textures);
+	free_map(data->map);
+}
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 int	close_window(t_map *data)
 {
-	(void) data;
+	free_all(&data->mlx, data);
 	exit(0);
 }
 

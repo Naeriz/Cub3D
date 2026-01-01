@@ -6,14 +6,11 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/01 20:34:42 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/01 20:35:47 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// mlx_new_window()
-// mlx_destroy_display(mlx->mlx)
 
 void	visible_height(t_map *data, double *step, double *pos, double height)
 {
