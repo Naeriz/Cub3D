@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/01 20:57:07 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/02 10:34:47 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,13 @@ int		check_map_validity(t_map *data);
 //tabs_spaces.c
 int		get_expanded_len(char *str);
 char	*expand_tabs(char *line);
+
+//fake_floodfill.c
+char get_char_safe(t_map *data, int x, int y);
+int is_enclosed(t_map *data, int x, int y);
+int	check_walls(t_map *data);
+
+
 
 //free.c
 

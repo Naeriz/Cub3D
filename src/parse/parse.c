@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:47:14 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/02 15:43:00 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/02 10:42:05 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	parse_data(t_map *data)
 				return (1);
 			break;
 		}
+		free(line);
 	}
 	return (0);
 }

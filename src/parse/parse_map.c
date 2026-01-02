@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:23:22 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/02 14:51:43 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/02 10:40:33 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,20 @@ int	list_to_array(t_map *data, t_list *map_list)
 	{
 		temp = ft_strdup((char *)curr->content);
 		if (!temp)
+		{
+			data->map[i] = NULL;
+			free_tab(data->map);
 			return (1);
+
+		}
 		remove_newline(temp);
 		//expand_tabs frees temp inside it so we don't leak
 		data->map[i] = expand_tabs(temp);
 		if (!data->map[i])
+		{
+			free_tab(data->map);
 			return (1);
+		}
 		curr = curr->next;
 		i++;
 	}
@@ -120,8 +128,18 @@ int	parse_map(t_map *data, char *first_line)
 	}
 	ft_lstclear(&map_list, free);
 	if (check_map_validity(data))
+	{
+		free_tab(data->map);
+		data->map = NULL;
 		return (1);
+	}
 	get_player_pos(data);
+	if (check_walls(data))
+	{
+		free_tab(data->map);
+		data->map = NULL;
+		return(1);
+	}
 	return (0);
 }
 
