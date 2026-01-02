@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:37:24 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/28 16:37:32 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/02 10:43:53 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,19 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Error\nuse ./cub3D [path/to/map.cub]\n", 2);
 		return (1);
 	}
+
 	init_data(&data);
 	if (parse_args(&data, av) != 0)
+	{
+		free_data(&data);
 		return (1);
+	}
+	
 	if (parse_data(&data) != 0)
+	{
+		free_data(&data);
 		return (1);
+	}
 	printf("works, map is loaded\n");
 	close(data.fd);
 	printf("	---MAP INFO---	\n");
@@ -44,5 +52,7 @@ int	main(int ac, char **av)
 	mlx_hook(mlx.window, 17, 1L << 17, close_window, &data);
 	mlx_loop_hook(mlx.mlx, key_detect, &data);
 	mlx_loop(mlx.mlx);
+
+	free_data(&data);
 	return (0);
 }

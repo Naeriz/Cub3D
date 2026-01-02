@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sionow <sionow@student.42.fr>              +#+  +:+       +#+         #
+#    By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 08:54:24 by amezoe            #+#    #+#              #
-#    Updated: 2026/01/01 20:55:30 by sionow           ###   ########.fr        #
+#    Updated: 2026/01/02 10:35:43 by amezoe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ EXEC		=	$(EXECDIR)/meth.c $(EXECDIR)/mover.c $(EXECDIR)/textures.c $(EXECDIR)/in
 
 PARSE		=	$(PARSEDIR)/basic.c $(PARSEDIR)/init.c $(PARSEDIR)/parse.c \
 				$(PARSEDIR)/utils.c $(PARSEDIR)/parse_map.c $(PARSEDIR)/validate.c \
-				$(PARSEDIR)/tabs_spaces.c $(PARSEDIR)/free.c \
+				$(PARSEDIR)/tabs_spaces.c $(PARSEDIR)/free.c $(PARSEDIR)/fake_floodfill.c\
 
 SRCS		=	$(SRCSDIR)/main.c $(EXEC) $(PARSE) \
 

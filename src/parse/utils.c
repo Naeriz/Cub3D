@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:44:50 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/02 14:42:06 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/02 09:48:17 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,13 @@ int	fill_color(int *color, char *line)
 		return (1);
 	if (!parts[0] || !parts[1] || !parts[2] || parts[3]) 
 	{
-		// todo, free array func
+		free_tab(parts);
 		return (printf("Error\nInvalid color format\n"), 1);
 	}
 	rgb[0] = ft_atoi(parts[0]);
 	rgb[1] = ft_atoi(parts[1]);
 	rgb[2] = ft_atoi(parts[2]);
-	// also todo free parts array here
+	free_tab(parts);
 	if (check_rgb_values(rgb))
 		return (1);
 	// convert to hex
