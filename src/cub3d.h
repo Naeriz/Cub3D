@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/02 10:34:47 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/02 19:10:46 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,4 +202,7 @@ int		key_release(int key, t_map *data);
 //mlx_draw.c
 void	my_mlx_pixel_put(t_map *data, int x, int y, int color);
 void	draw_column(t_map *data, int col, double distance, double side);
+
+//bonus
+void	init_minimap(t_map *data);
 #endif

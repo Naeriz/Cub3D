@@ -1,0 +1,14 @@
+EA inc/east.xpm
+
+NO inc/north.xpm
+
+WE inc/west.xpm
+
+C 0,255,0
+F 0,0,0
+
+111111
+100101
+101001
+1100N1
+100001

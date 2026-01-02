@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/01 20:25:52 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/02 19:29:36 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,16 +106,12 @@ void	change_checker(int key, t_map *data)
 
 	temp_x = data->player_x;
 	temp_y = data->player_y;
-	printf("%f\n", data->player_y);
-	printf("%f\n\n", data->player_x);
 	change_pos(key, data);
 	data->player_x += temp_x;
 	data->player_y += temp_y;
-	printf("%f\n", data->player_y);
-	printf("%f\n", data->player_x);
 	if (data->player_y < 1 || data->player_y > data->height - 1
 		|| data->player_x < 1
-		|| data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.2)
+		|| data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.01)
 	{
 		data->player_x = temp_x;
 		data->player_y = temp_y;
