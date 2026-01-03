@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:47:14 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/02 10:42:05 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/03 09:35:47 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int	parse_data(t_map *data)
 		if (status == 1)
 		{
 			free(line);
-			return (printf("error\n invalid line found in .cub\n"), 1);
+			//i remove this so we dont get the double errors
+			//return (printf("error\n invalid line found in .cub\n"), 1);
+			return (1);
 		}
 		if (status == 2)
 		{

@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:54:19 by amezoe            #+#    #+#             */
-/*   Updated: 2025/12/02 14:57:43 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/03 09:36:50 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ void	free_data(t_map *data)
 	if (data->map)
 		free_tab(data->map);
 	//just a double check if an error happens before parsemap happens, not sure if we have to we will see
-	// if (data->fd > 0)
-	// 	close(data->fd); 
+	if (data->fd > 0)
+	{
+		close(data->fd);
+		data->fd = -1;
+
+	}
 }
 
 int	exit_error(t_map *data, char *msg)
