@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/02 19:10:46 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/04 18:21:35 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,4 +205,5 @@ void	draw_column(t_map *data, int col, double distance, double side);
 
 //bonus
 void	init_minimap(t_map *data);
+int		mouse_mover(int x, int y, t_map *data);
 #endif
