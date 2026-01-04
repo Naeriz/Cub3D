@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:37:24 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/02 10:43:53 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/03 09:48:44 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	printf("works, map is loaded\n");
-	close(data.fd);
 	printf("	---MAP INFO---	\n");
 	printf("	height = %d\n", data.height);
 	printf("	width = %d\n", data.width);

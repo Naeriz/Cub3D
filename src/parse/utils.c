@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:44:50 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/02 09:48:17 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/03 10:05:02 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	fill_texture_path(char **texture, char *line)
 		return (1);
 	}
 	line += 2; 
-	while (*line == ' ')
+	while (*line && (*line == ' ' || *line == '\t'))
 		line++;
 	*texture = ft_strdup(line);
 	if (!*texture)
