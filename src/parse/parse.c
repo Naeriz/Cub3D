@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:47:14 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/03 11:01:25 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/04 19:35:37 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	parse_data(t_map *data)
 		{
 			if(parse_map(data, line))
 				return (1);
-			break;
+			return (0);
 		}
 		free(line);
 	}
