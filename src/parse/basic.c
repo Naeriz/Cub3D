@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:23:19 by amezoe            #+#    #+#             */
-/*   Updated: 2025/11/23 08:04:40 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/04 17:35:08 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	parse_args(t_map *map, char **av)
 		perror("Error\n cant open file");
 		return (1);
 	}
-	//dont close still gonna read
 	return (0);
 }
 

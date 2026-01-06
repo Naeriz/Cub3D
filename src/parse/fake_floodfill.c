@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floodfill.c                                        :+:      :+:    :+:   */
+/*   fake_floodfill.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 09:52:31 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/02 10:32:38 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/06 14:04:26 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-//hear me out i put floodfill in the trash
-//i just check the neighbors 1 by one and call it a day
-
-char get_char_safe(t_map *data, int x, int y)
+char	get_char_safe(t_map *data, int x, int y)
 {
 	if (y < 0 || y >= data->height)
 		return (' ');
@@ -24,15 +21,13 @@ char get_char_safe(t_map *data, int x, int y)
 	return (data->map[y][x]);
 }
 
-//check if 0 or P is touching space or nothing return 1 if invalid map
-
-int is_enclosed(t_map *data, int x, int y)
+int	is_enclosed(t_map *data, int x, int y)
 {
 	if (get_char_safe(data, x, y - 1) == ' '
 		|| get_char_safe(data, x, y + 1) == ' '
 		|| get_char_safe(data, x - 1, y) == ' '
-		|| get_char_safe(data, x + 1, y)== ' ')
-			return (1);
+		|| get_char_safe(data, x + 1, y) == ' ')
+		return (1);
 	return (0);
 }
 
@@ -51,7 +46,8 @@ int	check_walls(t_map *data)
 			{
 				if (is_enclosed(data, x, y))
 				{
-					printf("Error\n map is not enclosed at x: %d, y: %d\n", x , y);
+					printf("Error\n map is not enclosed at x: %d, y: %d\n",
+						x, y);
 					return (1);
 				}
 			}

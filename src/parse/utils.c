@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:44:50 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/03 10:05:02 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/06 14:05:26 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	fill_texture_path(char **texture, char *line)
 		printf("Error\n duplicate texture defined\n");
 		return (1);
 	}
-	line += 2; 
+	line += 2;
 	while (*line && (*line == ' ' || *line == '\t'))
 		line++;
 	*texture = ft_strdup(line);
@@ -84,7 +84,7 @@ int	fill_texture_path(char **texture, char *line)
 	{
 		free(*texture);
 		*texture = NULL;
-		return(1);
+		return (1);
 	}
 	return (0);
 }
@@ -102,7 +102,7 @@ int	fill_color(int *color, char *line)
 	parts = ft_split(line, ',');
 	if (!parts)
 		return (1);
-	if (!parts[0] || !parts[1] || !parts[2] || parts[3]) 
+	if (!parts[0] || !parts[1] || !parts[2] || parts[3])
 	{
 		free_tab(parts);
 		return (printf("Error\nInvalid color format\n"), 1);
@@ -113,7 +113,6 @@ int	fill_color(int *color, char *line)
 	free_tab(parts);
 	if (check_rgb_values(rgb))
 		return (1);
-	// convert to hex
-	*color= (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+	*color = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 	return (0);
 }

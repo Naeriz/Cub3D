@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/04 18:21:35 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/06 14:58:53 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # define R_FOV 65363
 
 
-//parse structs
 
 typedef struct s_textures
 {
@@ -39,7 +38,7 @@ typedef struct s_textures
 	char			*south;
 	char			*west;
 	char			*east;
-	int				floor;// hex color code
+	int				floor;
 	int				ceiling;
 	unsigned long	hex_floor;
 	unsigned long	hex_ceiling;
@@ -48,13 +47,13 @@ typedef struct s_textures
 typedef struct s_mlx
 {
 	void	*mlx;
-	char	*address; //which image
+	char	*address;
 	void	*window;
 	void	*image;
-	double	real_p_dir; //radian
-	int		bpp; //amount of bits on screen
-	int		endian; //0 or 1 how argb bytes organized
-	int		line_b; //width * 4
+	double	real_p_dir;
+	int		bpp;
+	int		endian;
+	int		line_b;
 	void	*text_north;
 	void	*text_east;
 	void	*text_south;
@@ -81,9 +80,9 @@ typedef struct s_map
 	t_textures	*textures;
 	double		player_x;
 	double		player_y;
-	char		player_dir; // N, E, S, W
-	int			wall_s; //beginn wall
-	int			wall_e; //end wall
+	char		player_dir;
+	int			wall_s;
+	int			wall_e;
 	int			w;
 	int			a;
 	int			s;
@@ -95,8 +94,8 @@ typedef struct s_map
 
 
 
-typedef struct s_ray //all shits needed for raycasting math brainfuck
-{ //dda for speed
+typedef struct s_ray
+{
 	t_mlx	mlx;
 	double	dir_x;
 	double	dir_y;
@@ -104,7 +103,7 @@ typedef struct s_ray //all shits needed for raycasting math brainfuck
 	double	side_y;
 	double	delta_x;
 	double	delta_y;
-	double	wall_x; //how much wall hit w ray
+	double	wall_x;
 	double	distance;
 	int		map_x;
 	int		map_y;
@@ -121,41 +120,49 @@ char	*skip_spaces(char *line);
 
 //init.c
 
-void	init_textures(t_textures *textures); //init textures and colors for floor ceiling
+void	init_textures(t_textures *textures);
 void	init_data(t_map *data);
 
 //parse.c
 
-int	check_textures_filled(t_map *data);
+int		check_textures_filled(t_map *data);
 int		parse_line(char *line, t_map *data);
 int		parse_data(t_map *data);
+int		parse_direction(char *content, t_map *data);
 
 //parse_map.c
 
 int		get_max_width(t_list *map_list);
 void	get_player_pos(t_map *data);
 int		list_to_array(t_map *data, t_list *map_list);
+void	read_map_loop(int fd, t_list **map_list);
 int		parse_map(t_map *data, char *first_line);
 
 //utils.c
 
-int		fill_texture_path(char **texture, char *line); //temp for now have to work this
-int		fill_color(int *color, char *line); //same here
+int		fill_texture_path(char **texture, char *line);
+int		fill_color(int *color, char *line);
 int		check_rgb_values(int *rgb);
 void	remove_newline(char *str);
 int		check_file_access(char *path);
 
 //validate.c
 int		check_map_validity(t_map *data);
+int		validate_map_content(t_map *data);
+char	*process_map_line(char *raw_cont);
+
+
 
 //tabs_spaces.c
 int		get_expanded_len(char *str);
 char	*expand_tabs(char *line);
+void	space_from_tabs(char *new_line, char *line);
+
 
 //fake_floodfill.c
-char get_char_safe(t_map *data, int x, int y);
-int is_enclosed(t_map *data, int x, int y);
-int	check_walls(t_map *data);
+char	get_char_safe(t_map *data, int x, int y);
+int		is_enclosed(t_map *data, int x, int y);
+int		check_walls(t_map *data);
 
 
 
@@ -165,6 +172,8 @@ void	free_tab(char **tab);
 void	free_textures(t_textures *textures);
 void	free_data(t_map *data);
 int		exit_error(t_map *data, char *msg);
+void	clear_gnl_buff(int fd);
+
 
 //meth.c
 void	visible_height(t_map *data, double *step, double *pos, double height);
