@@ -214,4 +214,5 @@ void	draw_column(t_map *data, int col, double distance, double side);
 
 //bonus
 void	init_minimap(t_map *data);
+int		mouse_mover(int x, int y, t_map *data);
 #endif

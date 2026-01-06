@@ -6,7 +6,7 @@
 #    By: sionow <sionow@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 08:54:24 by amezoe            #+#    #+#              #
-#    Updated: 2026/01/02 19:18:45 by sionow           ###   ########.fr        #
+#    Updated: 2026/01/04 19:50:59 by sionow           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,14 @@ SRCSDIR		 =	src
 
 EXEC		=	$(EXECDIR)/meth.c $(EXECDIR)/mover.c $(EXECDIR)/textures.c $(EXECDIR)/inits.c $(EXECDIR)/normi_dump.c $(EXECDIR)/mlx_draw.c
 
-BONUS_EXEC	=	$(EXECDIR)/meth.c $(EXECDIR)/mover.c $(EXECDIR)/textures.c $(EXECDIR)/normi_dump.c $(BONUSEXECDIR)/inits_bonus.c $(BONUSEXECDIR)/mlx_draw_bonus.c $(BONUSEXECDIR)/minimap_bonus.c
+BONUS_EXEC	=	$(EXECDIR)/meth.c $(BONUSEXECDIR)/mover_bonus.c $(EXECDIR)/textures.c $(EXECDIR)/normi_dump.c $(BONUSEXECDIR)/inits_bonus.c $(BONUSEXECDIR)/mlx_draw_bonus.c $(BONUSEXECDIR)/minimap_bonus.c $(BONUSEXECDIR)/rotator_bonus.c
 
 PARSE		=	$(PARSEDIR)/basic.c $(PARSEDIR)/init.c $(PARSEDIR)/parse.c \
 				$(PARSEDIR)/utils.c $(PARSEDIR)/parse_map.c $(PARSEDIR)/validate.c \
 				$(PARSEDIR)/tabs_spaces.c $(PARSEDIR)/free.c $(PARSEDIR)/fake_floodfill.c\
 
 SRCS		=	$(SRCSDIR)/main.c $(EXEC) $(PARSE)
-SRCS_BONUS	=	$(SRCSDIR)/main.c $(BONUS_EXEC) $(PARSE)
+SRCS_BONUS	=	$(BONUSEXECDIR)/main_bonus.c $(BONUS_EXEC) $(PARSE)
 
 LIBFTDIR	=	inc/libft
 GNLDIR		=	inc/get_next_line
