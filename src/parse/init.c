@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:36:07 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/01 19:48:12 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/06 14:01:00 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	init_textures(t_textures *textures)
 	textures->south = NULL;
 	textures->west = NULL;
 	textures->east = NULL;
-	textures->floor =-1;
-	textures->ceiling = -1; // i messed up, we need -1 cuz 0 is rgb black
+	textures->floor = -1;
+	textures->ceiling = -1;
 }
 
 void	init_data(t_map *data)
