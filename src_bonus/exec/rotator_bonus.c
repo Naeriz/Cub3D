@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:52:12 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/04 20:20:08 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/07 23:00:42 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,7 @@ void	limiter(t_map *data, int *x, int y, int *prev_x)
 int	mouse_mover(int x, int y, t_map *data)
 {
 	static int prev_x = 500;
-	// int movement;
 
-	// movement = x - prev_x;
-	// if (movement < 0)
-	// 	movement = -movement;		
-	// if (movement < 1)
-	// 	return (0);
 	limiter(data, &x, y, &prev_x);
 	if (x == prev_x)
 		return (0);

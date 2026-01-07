@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/06 14:58:53 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/07 21:39:50 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdint.h>
+#include <time.h> //bonus
 
 # define W 119
 # define A 97
@@ -55,10 +56,12 @@ typedef struct s_mlx
 	int		endian;
 	int		line_b;
 	void	*text_north;
+	void	*text_north2;
 	void	*text_east;
 	void	*text_south;
 	void	*text_west;
 	char	*north_adr;
+	char	*north_adr2;
 	char	*east_adr;
 	char	*south_adr;
 	char	*west_adr;
@@ -90,6 +93,8 @@ typedef struct s_map
 	int			r_fov;
 	int			l_fov;
 	int			start;
+	int			north;
+	clock_t		last_frame;
 }	t_map;
 
 
@@ -215,4 +220,8 @@ void	draw_column(t_map *data, int col, double distance, double side);
 //bonus
 void	init_minimap(t_map *data);
 int		mouse_mover(int x, int y, t_map *data);
+void	swap_img(t_map *data);
+void	init_img(t_mlx *mlx, t_map *data);
+int		close_window2(t_map *data);
+void	free_all2(t_mlx *mlx, t_map *data);
 #endif

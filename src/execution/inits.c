@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:12:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/01 20:56:46 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/07 19:54:54 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_rays(t_mlx *mlx, t_map *data)
 	ray_angle = mlx->real_p_dir - (fov / 2); //make start at left edge w radian meth
 	col = 0;
 	data->mlx = *mlx;
-	while (col < 1000) //throws rays
+	while (col < 1000) //throws rays 1k cuz of width
 	{
 		distance = ray_checker(mlx, data, ray_angle, &side); //side mod in func
 		if (distance != -1)
@@ -70,7 +70,7 @@ void	graphic_init(t_mlx *mlx, t_map *data)
 	mlx->image = mlx_new_image(mlx->mlx, 1000, 800);
 	if (!mlx->image)
 	{
-		write(2, "Error: image ain't imaging :c\n", 30);
+		write(2, "Error:\n image ain't imaging :c\n", 31);
 		mlx_destroy_window(mlx->mlx, mlx->window);
 		mlx_destroy_display(mlx->mlx);
 		free_map(data->map);
@@ -81,7 +81,7 @@ void	graphic_init(t_mlx *mlx, t_map *data)
 			&mlx->line_b, &mlx->endian);
 	if (!mlx->address)
 	{
-		write(2, "Error: image ain't imaging :c\n", 30);
+		write(2, "Error:\n adress of image issue :c\n", 33);
 		mlx_destroy_image(mlx->mlx, mlx->image);
 		mlx_destroy_window(mlx->mlx, mlx->window);
 		mlx_destroy_display(mlx->mlx);
@@ -100,14 +100,14 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 	mlx->west_adr = NULL;
 	if (!mlx->mlx)
 	{
-		write(2, "Error: mlx ain't init :c\n", 25);
+		write(2, "Error:\n mlx ain't init :c\n", 26);
 		free_map(data->map);
 		exit(1);
 	}
 	mlx->window = mlx_new_window(mlx->mlx, 1000, 800, "cub3d");
 	if (!mlx->window)
 	{
-		write(2, "Error: window ain't windowing :c\n", 33);
+		write(2, "Error:\n window ain't windowing :c\n", 34);
 		mlx_destroy_display(mlx->mlx);
 		free_map(data->map);
 		free(mlx->mlx);

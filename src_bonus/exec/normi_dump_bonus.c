@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normi_dump.c                                       :+:      :+:    :+:   */
+/*   normi_dump_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:15:33 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 22:48:08 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/07 23:01:10 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../src/cub3d.h"
 
 void	free_all(t_mlx *mlx, t_map *data)
 {
@@ -56,7 +56,7 @@ int	close_window(t_map *data)
 int	key_press(int key, t_map *data)
 {
 	if (key == ESCAPE)
-		close_window(data);
+		close_window2(data);
 	if (key == W)
 		data->w = 0;
 	else if (key == A)

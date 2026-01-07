@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/05 01:41:10 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/07 22:58:55 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ double	convert_dir(char dir)
 
 int	key_detect(t_map *data)
 {
+	swap_img(data);
 	if (data->w == 0)
 		change_checker(W, data);
 	else if (data->s == 0)
@@ -63,11 +64,14 @@ void	foven(int key, t_map *data)
 		data->mlx.real_p_dir += 2 * M_PI;
 	if (data->mlx.real_p_dir > 2 * M_PI) //if above 360deg make back to 0
 		data->mlx.real_p_dir -= 2 * M_PI;
-	mlx_destroy_image(data->mlx.mlx, data->mlx.image);
-	data->mlx.image = mlx_new_image(data->mlx.mlx, 1000, 800);
-	data->mlx.address = mlx_get_data_addr(data->mlx.image, &data->mlx.bpp,
-			&data->mlx.line_b, &data->mlx.endian);
-	init_rays(&data->mlx, data);
+	if (data->mlx.image)
+	{
+		mlx_destroy_image(data->mlx.mlx, data->mlx.image);
+		data->mlx.image = mlx_new_image(data->mlx.mlx, 1000, 800);
+		data->mlx.address = mlx_get_data_addr(data->mlx.image, &data->mlx.bpp,
+				&data->mlx.line_b, &data->mlx.endian);
+		init_rays(&data->mlx, data);
+	}
 	data->l_fov = 1;
 	data->r_fov = 1;
 }

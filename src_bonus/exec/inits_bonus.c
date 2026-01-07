@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:12:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/02 19:11:07 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/07 22:58:30 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	init_rays(t_mlx *mlx, t_map *data)
 		ray_angle += fov / 1000;
 		col++;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0, 0);
 	init_minimap(data);
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0, 0);
 }
 
 void	graphic_init(t_mlx *mlx, t_map *data)
@@ -96,6 +96,7 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 {
 	mlx->mlx = mlx_init();
 	mlx->north_adr = NULL;
+	mlx->north_adr2 = NULL;
 	mlx->east_adr = NULL;
 	mlx->south_adr = NULL;
 	mlx->west_adr = NULL;
@@ -114,8 +115,9 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 		free(mlx->mlx);
 		exit(1);
 	}
-	//init_textures(mlx, data);
 	mlx->real_p_dir = convert_dir(data->player_dir);
 	graphic_init(mlx, data);
 	textures_init(mlx, data);
+	data->north = 1;
+	data->last_frame = clock();
 }

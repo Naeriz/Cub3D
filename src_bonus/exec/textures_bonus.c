@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   textures_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 20:47:07 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/07 22:15:03 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../src/cub3d.h"
 
 void	apply_text(t_map *data, int col, int y, double pos)
 {
@@ -26,8 +26,10 @@ void	apply_text(t_map *data, int col, int y, double pos)
 		data->mlx.angle_y = 0;
 	else if (data->mlx.angle_y >= data->mlx.img_hght)
 		data->mlx.angle_y = data->mlx.img_hght - 1;
-	if (data->player_dir == 'N')
+	if (data->player_dir == 'N' && data->north == 1)
 		tex = (uint32_t *)data->mlx.north_adr; //tex big number contains pixel & their color
+	else if (data->player_dir == 'N' && data->north == 2)
+		tex = (uint32_t *)data->mlx.north_adr2;
 	else if (data->player_dir == 'S')
 		tex = (uint32_t *)data->mlx.south_adr;
 	else if (data->player_dir == 'W')
@@ -67,10 +69,12 @@ void	getadr(t_mlx *mlx, t_map *data)
 			&mlx->line_b, &mlx->endian);
 	mlx->west_adr = mlx_get_data_addr(mlx->text_west, &mlx->bpp,
 			&mlx->line_b, &mlx->endian);
+	mlx->north_adr2 = mlx_get_data_addr(mlx->text_north2, &mlx->bpp,
+			&mlx->line_b, &mlx->endian);
 	if (!mlx->north_adr || !mlx->east_adr || !mlx->south_adr
-		|| !mlx->west_adr)
+		|| !mlx->west_adr || !mlx->north_adr2)
 	{
-		free_all(mlx, data);
+		free_all2(mlx, data);
 		exit(1);
 	}
 }
@@ -79,6 +83,8 @@ void	textures_init(t_mlx *mlx, t_map *data)
 {
 	mlx->text_north = mlx_xpm_file_to_image(mlx->mlx, data->textures->north,
 			&mlx->img_wdth, &mlx->img_hght);
+	mlx->text_north2 = mlx_xpm_file_to_image(mlx->mlx, "inc/north2.xpm",
+			&mlx->img_wdth, &mlx->img_hght);
 	mlx->text_east = mlx_xpm_file_to_image(mlx->mlx, data->textures->east,
 			&mlx->img_wdth, &mlx->img_hght);
 	mlx->text_south = mlx_xpm_file_to_image(mlx->mlx, data->textures->south,
@@ -86,11 +92,12 @@ void	textures_init(t_mlx *mlx, t_map *data)
 	mlx->text_west = mlx_xpm_file_to_image(mlx->mlx, data->textures->west,
 			&mlx->img_wdth, &mlx->img_hght);
 	if (!mlx->text_north || !mlx->text_east || !mlx->text_south
-		|| !mlx->text_west)
+		|| !mlx->text_west || !mlx->text_north2)
 	{
 		printf("Error:\n xpm conversion failed\n");
-		free_all(mlx, data);
+		free_all2(mlx, data);
 		exit(1);
 	}
 	getadr(mlx, data);
+	init_img(mlx, data);
 }

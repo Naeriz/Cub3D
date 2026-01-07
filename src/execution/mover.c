@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/02 19:29:36 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/07 20:16:38 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	key_detect(t_map *data)
 		foven(R_FOV, data);
 	else if (data->l_fov == 0)
 		foven(L_FOV, data);
-	if (data->start == 0)
+	if (data->start == 0)//to reput img cuz of disortion at first display
 	{
 		mlx_destroy_image(data->mlx.mlx, data->mlx.image);
 		data->mlx.image = mlx_new_image(data->mlx.mlx, 1000, 800);
