@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/08 13:15:24 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/08 19:42:59 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ESCAPE 65307
 # define L_FOV 65361
 # define R_FOV 65363
+# define SPACE 32
 
 
 
@@ -60,11 +61,15 @@ typedef struct s_mlx
 	void	*text_east;
 	void	*text_south;
 	void	*text_west;
+	void	*text_door1;
+	void	*text_door2;
 	char	*north_adr;
 	char	*north_adr2;
 	char	*east_adr;
 	char	*south_adr;
 	char	*west_adr;
+	char	*door1_adr;
+	char	*door2_adr;
 	int		img_wdth;
 	int		img_hght;
 	int		angle_x;
@@ -95,6 +100,7 @@ typedef struct s_map
 	int			start;
 	int			north;
 	clock_t		last_frame;
+	int			door; //0 no door, 1 closed, 2open
 }	t_map;
 
 
@@ -224,4 +230,5 @@ void	swap_img(t_map *data);
 void	init_img(t_mlx *mlx, t_map *data);
 int		close_window2(t_map *data);
 void	free_all2(t_mlx *mlx, t_map *data);
+void	door_dist(t_map *data);
 #endif

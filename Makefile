@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+         #
+#    By: sionow <sionow@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 08:54:24 by amezoe            #+#    #+#              #
-#    Updated: 2026/01/08 13:37:22 by amezoe           ###   ########.fr        #
+#    Updated: 2026/01/08 19:41:47 by sionow           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCSDIR		 =	src
 
 EXEC		=	$(EXECDIR)/meth.c $(EXECDIR)/mover.c $(EXECDIR)/textures.c $(EXECDIR)/inits.c $(EXECDIR)/normi_dump.c $(EXECDIR)/mlx_draw.c
 
-BONUS_EXEC	=	$(EXECDIR)/meth.c $(BONUSEXECDIR)/mover_bonus.c $(BONUSEXECDIR)/textures_bonus.c $(BONUSEXECDIR)/normi_dump_bonus.c $(BONUSEXECDIR)/inits_bonus.c $(BONUSEXECDIR)/mlx_draw_bonus.c $(BONUSEXECDIR)/minimap_bonus.c $(BONUSEXECDIR)/rotator_bonus.c $(BONUSEXECDIR)/animated_bonus.c
+BONUS_EXEC	=	$(EXECDIR)/meth.c $(BONUSEXECDIR)/mover_bonus.c $(BONUSEXECDIR)/textures_bonus.c $(BONUSEXECDIR)/normi_dump_bonus.c $(BONUSEXECDIR)/inits_bonus.c $(BONUSEXECDIR)/mlx_draw_bonus.c $(BONUSEXECDIR)/minimap_bonus.c $(BONUSEXECDIR)/rotator_bonus.c $(BONUSEXECDIR)/animated_bonus.c $(BONUSEXECDIR)/door_bonus.c
 
 
 BONUS_PARSE =	$(BONUSPARSEDIR)/basic_bonus.c $(BONUSPARSEDIR)/init_bonus.c $(BONUSPARSEDIR)/parse_bonus.c \

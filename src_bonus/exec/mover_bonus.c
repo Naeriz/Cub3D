@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 22:58:55 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/08 18:47:48 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,8 @@ void	change_checker(int key, t_map *data)
 		|| data->player_x < 1
 		|| data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.01 
 		|| data->map[(int)data->player_y][(int)data->player_x] == '1'
-		|| edger(data, (int)temp_x, (int)temp_y) == 1)
+		|| edger(data, (int)temp_x, (int)temp_y) == 1
+		|| data->map[(int)data->player_y][(int)data->player_x] == 'D')
 	{
 		data->player_x = temp_x;
 		data->player_y = temp_y;

@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:15:33 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 23:01:10 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/08 19:06:59 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	key_press(int key, t_map *data)
 {
 	if (key == ESCAPE)
 		close_window2(data);
+	if (key == SPACE)
+		door_dist(data);
 	if (key == W)
 		data->w = 0;
 	else if (key == A)

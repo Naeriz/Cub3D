@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 20:45:05 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 22:59:07 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/08 19:41:12 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	close_window2(t_map *data)
 
 void	free_all2(t_mlx *mlx, t_map *data)
 {
+	if (mlx->text_door1)
+		mlx_destroy_image(mlx->mlx, mlx->text_door1);
+	if (mlx->text_door2)
+		mlx_destroy_image(mlx->mlx, mlx->text_door2);
 	if (mlx->text_north)
 		mlx_destroy_image(mlx->mlx, mlx->text_north);
 	if (mlx->text_north2)
