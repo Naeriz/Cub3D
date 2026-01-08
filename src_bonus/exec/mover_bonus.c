@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/08 18:47:48 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/08 19:55:27 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	key_detect(t_map *data)
 void	foven(int key, t_map *data)
 {
 	if (key == R_FOV)
-		data->mlx.real_p_dir += 0.030; //works well
+		data->mlx.real_p_dir += 0.060; //works well
 	else if (key == L_FOV)
-		data->mlx.real_p_dir -= 0.030;
+		data->mlx.real_p_dir -= 0.060;
 	if (data->mlx.real_p_dir < 0)
 		data->mlx.real_p_dir += 2 * M_PI;
 	if (data->mlx.real_p_dir > 2 * M_PI) //if above 360deg make back to 0
