@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/07 21:39:50 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/08 13:15:24 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,20 +156,15 @@ int		check_map_validity(t_map *data);
 int		validate_map_content(t_map *data);
 char	*process_map_line(char *raw_cont);
 
-
-
 //tabs_spaces.c
 int		get_expanded_len(char *str);
 char	*expand_tabs(char *line);
 void	space_from_tabs(char *new_line, char *line);
 
-
 //fake_floodfill.c
 char	get_char_safe(t_map *data, int x, int y);
 int		is_enclosed(t_map *data, int x, int y);
 int		check_walls(t_map *data);
-
-
 
 //free.c
 
@@ -178,6 +173,11 @@ void	free_textures(t_textures *textures);
 void	free_data(t_map *data);
 int		exit_error(t_map *data, char *msg);
 void	clear_gnl_buff(int fd);
+
+//doors.c
+
+int	is_valid_door_position(t_map *data, int x, int y);
+int	check_doors(t_map *data);
 
 
 //meth.c

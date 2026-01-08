@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sionow <sionow@student.42.fr>              +#+  +:+       +#+         #
+#    By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 08:54:24 by amezoe            #+#    #+#              #
-#    Updated: 2026/01/07 22:17:08 by sionow           ###   ########.fr        #
+#    Updated: 2026/01/08 13:37:22 by amezoe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 EXECDIR		 =	src/execution
 BONUSEXECDIR =	src_bonus/exec
+BONUSPARSEDIR = src_bonus/parse
 PARSEDIR	 =	src/parse
 SRCSDIR		 =	src
 
@@ -20,12 +21,22 @@ EXEC		=	$(EXECDIR)/meth.c $(EXECDIR)/mover.c $(EXECDIR)/textures.c $(EXECDIR)/in
 
 BONUS_EXEC	=	$(EXECDIR)/meth.c $(BONUSEXECDIR)/mover_bonus.c $(BONUSEXECDIR)/textures_bonus.c $(BONUSEXECDIR)/normi_dump_bonus.c $(BONUSEXECDIR)/inits_bonus.c $(BONUSEXECDIR)/mlx_draw_bonus.c $(BONUSEXECDIR)/minimap_bonus.c $(BONUSEXECDIR)/rotator_bonus.c $(BONUSEXECDIR)/animated_bonus.c
 
+
+BONUS_PARSE =	$(BONUSPARSEDIR)/basic_bonus.c $(BONUSPARSEDIR)/init_bonus.c $(BONUSPARSEDIR)/parse_bonus.c \
+				$(BONUSPARSEDIR)/utils_bonus.c $(BONUSPARSEDIR)/parse_map_bonus.c $(BONUSPARSEDIR)/validate_bonus.c \
+				$(BONUSPARSEDIR)/tabs_spaces_bonus.c $(BONUSPARSEDIR)/free_bonus.c $(BONUSPARSEDIR)/fake_floodfill_bonus.c\
+				$(BONUSPARSEDIR)/doors_bonus.c
+
 PARSE		=	$(PARSEDIR)/basic.c $(PARSEDIR)/init.c $(PARSEDIR)/parse.c \
 				$(PARSEDIR)/utils.c $(PARSEDIR)/parse_map.c $(PARSEDIR)/validate.c \
 				$(PARSEDIR)/tabs_spaces.c $(PARSEDIR)/free.c $(PARSEDIR)/fake_floodfill.c\
 
+
 SRCS		=	$(SRCSDIR)/main.c $(EXEC) $(PARSE)
-SRCS_BONUS	=	$(BONUSEXECDIR)/main_bonus.c $(BONUS_EXEC) $(PARSE)
+SRCS_BONUS	=	$(BONUSEXECDIR)/main_bonus.c $(BONUS_EXEC) $(BONUS_PARSE)
+				
+				
+
 
 LIBFTDIR	=	inc/libft
 GNLDIR		=	inc/get_next_line
