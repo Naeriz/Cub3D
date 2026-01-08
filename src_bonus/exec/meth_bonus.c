@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/08 19:48:57 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/08 19:48:25 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 	t_ray	ray;
 
 	init_struct_ray(mlx, &ray, data, ray_angle);
+	data->door = 0;
 	while (1)
 	{
 		dda_step(&ray);
@@ -116,6 +117,16 @@ double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 			return (-1);
 		if (data->map[ray.map_y][ray.map_x] == '1')
 			break ;
+		if (data->map[ray.map_y][ray.map_x] == 'D')
+		{
+			data->door = 1;
+			break ;
+		}
+		if (data->map[ray.map_y][ray.map_x] == 'O')
+		{
+			data->door = 2;
+			break ;
+		}
 	}
 	get_wall_dir(data, ray); //to get right texture
 	return (final_distance(&ray, data, ray_angle, side));
