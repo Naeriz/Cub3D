@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:12:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/10 23:21:39 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:31:14 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 	if (!mlx->mlx)
 	{
 		write(2, "Error: mlx ain't init :c\n", 25);
-		free_all2(mlx, data)
+		free_all2(mlx, data);
 		exit(1);
 	}
 	mlx->window = mlx_new_window(mlx->mlx, 1000, 800, "cub3d");

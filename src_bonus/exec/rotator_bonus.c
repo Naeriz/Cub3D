@@ -6,13 +6,13 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:52:12 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/10 23:27:34 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:31:31 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../src/cub3d.h"
 
-int	mouse_mover(int x, int y, t_map *data)
+int	mouse_mover(int x, t_map *data)
 {
 	static int	prev_x = 500;
 

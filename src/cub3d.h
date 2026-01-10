@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/10 23:00:33 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:31:45 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void	draw_column(t_map *data, int col, double distance, double side);
 
 //bonus
 void	init_minimap(t_map *data);
-int		mouse_mover(int x, int y, t_map *data);
+int		mouse_mover(int x, t_map *data);
 void	swap_img(t_map *data);
 void	init_img(t_mlx *mlx, t_map *data);
 int		close_window2(t_map *data);
