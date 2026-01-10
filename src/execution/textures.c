@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 20:47:07 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:14:35 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	apply_text(t_map *data, int col, int y, double pos)
 	uint32_t	*tex;
 	int			offset;
 
-	data->mlx.angle_y = (int)pos % data->mlx.img_hght;//securities
+	data->mlx.angle_y = (int)pos % data->mlx.img_hght;
 	if (data->mlx.angle_x < 0)
 		data->mlx.angle_x = 0;
 	else if (data->mlx.angle_x >= data->mlx.img_wdth)
@@ -27,7 +27,7 @@ void	apply_text(t_map *data, int col, int y, double pos)
 	else if (data->mlx.angle_y >= data->mlx.img_hght)
 		data->mlx.angle_y = data->mlx.img_hght - 1;
 	if (data->player_dir == 'N')
-		tex = (uint32_t *)data->mlx.north_adr; //tex big number contains pixel & their color
+		tex = (uint32_t *)data->mlx.north_adr;
 	else if (data->player_dir == 'S')
 		tex = (uint32_t *)data->mlx.south_adr;
 	else if (data->player_dir == 'W')
@@ -35,8 +35,8 @@ void	apply_text(t_map *data, int col, int y, double pos)
 	else if (data->player_dir == 'E')
 		tex = (uint32_t *)data->mlx.east_adr;
 	offset = (data->mlx.angle_y * data->mlx.img_wdth + data->mlx.angle_x);
-	if (offset >= 0 && offset < data->mlx.img_hght * data->mlx.img_wdth) //offset which pixel got which color
-		my_mlx_pixel_put(data, col, y, tex[offset]);  //put said pixel color on col/y point
+	if (offset >= 0 && offset < data->mlx.img_hght * data->mlx.img_wdth)
+		my_mlx_pixel_put(data, col, y, tex[offset]);
 }
 
 void	get_wall_dir(t_map *data, t_ray ray)

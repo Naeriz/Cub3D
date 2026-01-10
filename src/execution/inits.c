@@ -6,14 +6,12 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:12:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 19:54:54 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:02:36 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-//dont ask I dont fucking know anymore big meth
-//dda prep
 void	init_struct_ray(t_mlx *mlx, t_ray *ray, t_map *data, double ray_angle)
 {
 	ray->mlx = *mlx;
@@ -21,8 +19,8 @@ void	init_struct_ray(t_mlx *mlx, t_ray *ray, t_map *data, double ray_angle)
 	ray->dir_y = sin(ray_angle);
 	ray->map_x = (int)data->player_x;
 	ray->map_y = (int)data->player_y;
-	ray->delta_x = fabs(1 / ray->dir_x + 0.0000001); //float absolute (same as abs)
-	ray->delta_y = fabs(1 / ray->dir_y + 0.0000001); //securit so its not fully 0
+	ray->delta_x = fabs(1 / ray->dir_x + 0.0000001);
+	ray->delta_y = fabs(1 / ray->dir_y + 0.0000001);
 	ray->step_x = 1;
 	if (ray->dir_x > 0)
 		ray->side_x = (ray->map_x + 1.0 - data->player_x) * ray->delta_x;
@@ -41,22 +39,21 @@ void	init_struct_ray(t_mlx *mlx, t_ray *ray, t_map *data, double ray_angle)
 	}
 }
 
-//double alot more precise than float(more nr behind ,)
 void	init_rays(t_mlx *mlx, t_map *data)
 {
 	double	fov;
 	double	distance;
 	double	side;
 	double	ray_angle;
-	int		col; //which column we at. left to right
+	int		col;
 
 	fov = 60 * (M_PI / 180);
-	ray_angle = mlx->real_p_dir - (fov / 2); //make start at left edge w radian meth
+	ray_angle = mlx->real_p_dir - (fov / 2);
 	col = 0;
 	data->mlx = *mlx;
-	while (col < 1000) //throws rays 1k cuz of width
+	while (col < 1000)
 	{
-		distance = ray_checker(mlx, data, ray_angle, &side); //side mod in func
+		distance = ray_checker(mlx, data, ray_angle, &side);
 		if (distance != -1)
 			draw_column(data, col, distance, side);
 		ray_angle += fov / 1000;
@@ -113,7 +110,6 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 		free(mlx->mlx);
 		exit(1);
 	}
-	//init_textures(mlx, data);
 	mlx->real_p_dir = convert_dir(data->player_dir);
 	graphic_init(mlx, data);
 	textures_init(mlx, data);

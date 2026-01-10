@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/07 20:16:38 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:16:46 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	key_detect(t_map *data)
 		foven(R_FOV, data);
 	else if (data->l_fov == 0)
 		foven(L_FOV, data);
-	if (data->start == 0)//to reput img cuz of disortion at first display
+	if (data->start == 0)
 	{
 		mlx_destroy_image(data->mlx.mlx, data->mlx.image);
 		data->mlx.image = mlx_new_image(data->mlx.mlx, 1000, 800);
@@ -56,12 +56,12 @@ int	key_detect(t_map *data)
 void	foven(int key, t_map *data)
 {
 	if (key == R_FOV)
-		data->mlx.real_p_dir += 0.030; //works well
+		data->mlx.real_p_dir += 0.030;
 	else if (key == L_FOV)
 		data->mlx.real_p_dir -= 0.030;
 	if (data->mlx.real_p_dir < 0)
 		data->mlx.real_p_dir += 2 * M_PI;
-	if (data->mlx.real_p_dir > 2 * M_PI) //if above 360deg make back to 0
+	if (data->mlx.real_p_dir > 2 * M_PI)
 		data->mlx.real_p_dir -= 2 * M_PI;
 	mlx_destroy_image(data->mlx.mlx, data->mlx.image);
 	data->mlx.image = mlx_new_image(data->mlx.mlx, 1000, 800);

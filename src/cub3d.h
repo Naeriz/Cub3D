@@ -6,22 +6,22 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/08 19:42:59 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:00:33 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "../inc/minilibx-linux/mlx.h"
-#include "../inc/get_next_line/get_next_line.h"
-#include "../inc/libft/libft.h"
+# include "../inc/minilibx-linux/mlx.h"
+# include "../inc/get_next_line/get_next_line.h"
+# include "../inc/libft/libft.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <stdint.h>
-#include <time.h> //bonus
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include <stdint.h>
+# include <time.h>
 
 # define W 119
 # define A 97
@@ -31,8 +31,6 @@
 # define L_FOV 65361
 # define R_FOV 65363
 # define SPACE 32
-
-
 
 typedef struct s_textures
 {
@@ -103,8 +101,6 @@ typedef struct s_map
 	int			door; //0 no door, 1 closed, 2open
 }	t_map;
 
-
-
 typedef struct s_ray
 {
 	t_mlx	mlx;
@@ -124,25 +120,21 @@ typedef struct s_ray
 }	t_ray;
 
 //basic.c
-
 int		check_extension(char *path);
 int		parse_args(t_map *map, char **av);
 char	*skip_spaces(char *line);
 
 //init.c
-
 void	init_textures(t_textures *textures);
 void	init_data(t_map *data);
 
 //parse.c
-
 int		check_textures_filled(t_map *data);
 int		parse_line(char *line, t_map *data);
 int		parse_data(t_map *data);
 int		parse_direction(char *content, t_map *data);
 
 //parse_map.c
-
 int		get_max_width(t_list *map_list);
 void	get_player_pos(t_map *data);
 int		list_to_array(t_map *data, t_list *map_list);
@@ -150,7 +142,6 @@ void	read_map_loop(int fd, t_list **map_list);
 int		parse_map(t_map *data, char *first_line);
 
 //utils.c
-
 int		fill_texture_path(char **texture, char *line);
 int		fill_color(int *color, char *line);
 int		check_rgb_values(int *rgb);
@@ -173,7 +164,6 @@ int		is_enclosed(t_map *data, int x, int y);
 int		check_walls(t_map *data);
 
 //free.c
-
 void	free_tab(char **tab);
 void	free_textures(t_textures *textures);
 void	free_data(t_map *data);
@@ -181,10 +171,8 @@ int		exit_error(t_map *data, char *msg);
 void	clear_gnl_buff(int fd);
 
 //doors.c
-
-int	is_valid_door_position(t_map *data, int x, int y);
-int	check_doors(t_map *data);
-
+int		is_valid_door_position(t_map *data, int x, int y);
+int		check_doors(t_map *data);
 
 //meth.c
 void	visible_height(t_map *data, double *step, double *pos, double height);
