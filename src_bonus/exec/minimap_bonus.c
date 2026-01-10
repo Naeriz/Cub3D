@@ -6,24 +6,23 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:38:37 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/02 19:33:35 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:24:11 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../src/cub3d.h"
 
-//have to put pixel by pixel so disgusting shit
 void	draw_grid(t_map *data, int x, int y, int color)
 {
-	int ht;
-	int wd;
+	int	ht;
+	int	wd;
 	int	i;
 	int	j;
 
 	i = 0;
 	ht = 200 / data->height;
 	wd = 200 / data->width;
-	if (x * wd >= 200 || y * ht >= 200) //multiplied to not draw out of bounds
+	if (x * wd >= 200 || y * ht >= 200)
 		return ;
 	while (i < ht)
 	{
@@ -43,7 +42,7 @@ void	draw_map(t_map *data)
 	int	x;
 	int	y;
 	int	color;
-	
+
 	y = 0;
 	while (y < 200)
 	{
@@ -68,14 +67,14 @@ void	draw_map(t_map *data)
 
 void	draw_player(t_map *data, int x, int y)
 {
-	int	i; //both for dotsize
+	int	i;
 	int	j;
 
 	i = 0;
 	while (i <= 4)
 	{
 		j = 0;
-		while(j <= 4)
+		while (j <= 4)
 		{
 			if (x + i < 200 && y + j < 200)
 				my_mlx_pixel_put(data, x + i, y + j, 0xFF0000);

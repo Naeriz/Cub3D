@@ -6,11 +6,26 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:18:15 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/02 19:11:10 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:26:34 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../src/cub3d.h"
+
+double	convert_dir(char dir)
+{
+	double	ret;
+
+	if (dir == 'N')
+		ret = 3 * M_PI / 2;
+	else if (dir == 'E')
+		ret = 0;
+	else if (dir == 'S')
+		ret = (M_PI / 2);
+	else if (dir == 'W')
+		ret = M_PI;
+	return (ret);
+}
 
 void	my_mlx_pixel_put(t_map *data, int x, int y, int color)
 {

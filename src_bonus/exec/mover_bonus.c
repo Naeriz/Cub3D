@@ -6,26 +6,11 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/08 19:55:27 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:26:26 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../src/cub3d.h"
-
-double	convert_dir(char dir)
-{
-	double	ret;
-
-	if (dir == 'N')
-		ret = 3 * M_PI / 2;
-	else if (dir == 'E')
-		ret = 0;
-	else if (dir == 'S')
-		ret = (M_PI / 2);
-	else if (dir == 'W')
-		ret = M_PI;
-	return (ret);
-}
 
 int	key_detect(t_map *data)
 {
@@ -57,12 +42,12 @@ int	key_detect(t_map *data)
 void	foven(int key, t_map *data)
 {
 	if (key == R_FOV)
-		data->mlx.real_p_dir += 0.060; //works well
+		data->mlx.real_p_dir += 0.060;
 	else if (key == L_FOV)
 		data->mlx.real_p_dir -= 0.060;
 	if (data->mlx.real_p_dir < 0)
 		data->mlx.real_p_dir += 2 * M_PI;
-	if (data->mlx.real_p_dir > 2 * M_PI) //if above 360deg make back to 0
+	if (data->mlx.real_p_dir > 2 * M_PI)
 		data->mlx.real_p_dir -= 2 * M_PI;
 	if (data->mlx.image)
 	{
@@ -105,7 +90,7 @@ void	change_pos(int key, t_map *data)
 	}
 }
 
-int		edger(t_map *d, int cur_x, int cur_y)
+int	edger(t_map *d, int cur_x, int cur_y)
 {
 	int	x;
 	int	y;
@@ -139,7 +124,7 @@ void	change_checker(int key, t_map *data)
 	data->player_y += temp_y;
 	if (data->player_y < 1 || data->player_y > data->height - 1
 		|| data->player_x < 1
-		|| data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.01 
+		|| data->player_x > ft_strlen(data->map[(int)data->player_y]) - 1.01
 		|| data->map[(int)data->player_y][(int)data->player_x] == '1'
 		|| edger(data, (int)temp_x, (int)temp_y) == 1
 		|| data->map[(int)data->player_y][(int)data->player_x] == 'D')

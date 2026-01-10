@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/08 19:42:35 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:28:39 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ uint32_t	*tex_storage(t_map *data)
 	else if (data->door == 2)
 		return ((uint32_t *)data->mlx.door2_adr);
 	if (data->player_dir == 'N' && data->north == 1)
-		return((uint32_t *)data->mlx.north_adr); //tex big number contains pixel & their color
+		return ((uint32_t *)data->mlx.north_adr);
 	else if (data->player_dir == 'N' && data->north == 2)
-		return((uint32_t *)data->mlx.north_adr2);
+		return ((uint32_t *)data->mlx.north_adr2);
 	else if (data->player_dir == 'S')
-		return((uint32_t *)data->mlx.south_adr);
+		return ((uint32_t *)data->mlx.south_adr);
 	else if (data->player_dir == 'W')
-		return((uint32_t *)data->mlx.west_adr);
+		return ((uint32_t *)data->mlx.west_adr);
 	else if (data->player_dir == 'E')
-		return((uint32_t *)data->mlx.east_adr);
+		return ((uint32_t *)data->mlx.east_adr);
 	return (0);
 }
 
@@ -36,7 +36,7 @@ void	apply_text(t_map *data, int col, int y, double pos)
 	uint32_t	*tex;
 	int			offset;
 
-	data->mlx.angle_y = (int)pos % data->mlx.img_hght;//securities
+	data->mlx.angle_y = (int)pos % data->mlx.img_hght;
 	if (data->mlx.angle_x < 0)
 		data->mlx.angle_x = 0;
 	else if (data->mlx.angle_x >= data->mlx.img_wdth)
@@ -47,8 +47,8 @@ void	apply_text(t_map *data, int col, int y, double pos)
 		data->mlx.angle_y = data->mlx.img_hght - 1;
 	tex = tex_storage(data);
 	offset = (data->mlx.angle_y * data->mlx.img_wdth + data->mlx.angle_x);
-	if (offset >= 0 && offset < data->mlx.img_hght * data->mlx.img_wdth) //offset which pixel got which color
-		my_mlx_pixel_put(data, col, y, tex[offset]);  //put said pixel color on col/y point
+	if (offset >= 0 && offset < data->mlx.img_hght * data->mlx.img_wdth)
+		my_mlx_pixel_put(data, col, y, tex[offset]);
 }
 
 void	get_wall_dir(t_map *data, t_ray ray)
@@ -86,7 +86,7 @@ void	getadr(t_mlx *mlx, t_map *data)
 	mlx->door2_adr = mlx_get_data_addr(mlx->text_door2, &mlx->bpp,
 			&mlx->line_b, &mlx->endian);
 	if (!mlx->north_adr || !mlx->east_adr || !mlx->south_adr
-		|| !mlx->west_adr || !mlx->north_adr2 || !mlx->door1_adr 
+		|| !mlx->west_adr || !mlx->north_adr2 || !mlx->door1_adr
 		|| !mlx->door2_adr)
 	{
 		free_all2(mlx, data);

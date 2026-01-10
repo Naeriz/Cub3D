@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/08 19:50:37 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/10 23:23:21 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	visible_height(t_map *data, double *step, double *pos, double height)
 
 	data->wall_s = (800 - height) / 2;
 	data->wall_e = (data->wall_s + height);
-	draw_s = fmax(data->wall_s, 0); //to not draw above or below
+	draw_s = fmax(data->wall_s, 0);
 	draw_e = fmin(data->wall_e, 800);
 	if (draw_e <= draw_s)
 	{
@@ -60,7 +60,6 @@ void	render_vertical(t_map *data, int col, double height, double side)
 	}
 }
 
-//make ray go forward 1 grid a time
 void	dda_step(t_ray *ray)
 {
 	if (ray->side_x < ray->side_y)
@@ -79,30 +78,28 @@ void	dda_step(t_ray *ray)
 
 double	final_distance(t_ray *ray, t_map *data, double ray_angle, double *side)
 {
-	int	wall; //norminette rayviewside too long
+	int	wall;
 
 	wall = ray->view_side;
 	if (ray->view_side == 0)
 	{
 		ray->distance = (ray->map_x - data->player_x
-				+ (1 - ray->step_x) / 2) / ray->dir_x; //to see if ray approach from left or right
-		ray->wall_x = data->player_y + ray->dir_y * ray->distance; //textures
+				+ (1 - ray->step_x) / 2) / ray->dir_x;
+		ray->wall_x = data->player_y + ray->dir_y * ray->distance;
 	}
 	else
 	{
 		ray->distance = (ray->map_y - data->player_y
-				+ (1 - ray->step_y) / 2) / ray->dir_y; //above or under
+				+ (1 - ray->step_y) / 2) / ray->dir_y;
 		ray->wall_x = data->player_x + ray->dir_x * ray->distance;
 	}
-	ray->wall_x = ray->wall_x - floor(ray->wall_x); //floor retardus makes for example 20.97 into 0.97, for tetxures bcs work w 0 to 1
-	if ((wall == 0 && ray->step_x == -1) || (wall == 1 && ray->step_y == -1)) //if u look north w cube infront, u look at south part of cube
+	ray->wall_x = ray->wall_x - floor(ray->wall_x);
+	if ((wall == 0 && ray->step_x == -1) || (wall == 1 && ray->step_y == -1))
 		ray->wall_x = 1 - ray->wall_x;
 	*side = ray->wall_x;
-	return (ray->distance * cos(ray_angle - ray->mlx.real_p_dir)); //fisheye bcs not same length rays, cos make sides shorter = normal vision
+	return (ray->distance * cos(ray_angle - ray->mlx.real_p_dir));
 }
 
-//each ray one by one
-//checks if out of map or found wall
 double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 {
 	t_ray	ray;
@@ -128,6 +125,6 @@ double	ray_checker(t_mlx *mlx, t_map *data, double ray_angle, double *side)
 			break ;
 		}
 	}
-	get_wall_dir(data, ray); //to get right texture
+	get_wall_dir(data, ray);
 	return (final_distance(&ray, data, ray_angle, side));
 }
