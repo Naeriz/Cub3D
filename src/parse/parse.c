@@ -64,6 +64,7 @@ int	parse_line(char *line, t_map *data)
 		}
 		return (2);
 	}
+	printf("Error\nUnknown identifier or invalid line at: %s", content);
 	return (1);
 }
 
