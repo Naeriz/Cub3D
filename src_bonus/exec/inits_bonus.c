@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:12:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/10 23:31:14 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 19:55:29 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	init_mlx(t_mlx *mlx, t_map *data)
 	mlx->east_adr = NULL;
 	mlx->south_adr = NULL;
 	mlx->west_adr = NULL;
+	init_oia(mlx);
 	if (!mlx->mlx)
 	{
 		write(2, "Error: mlx ain't init :c\n", 25);

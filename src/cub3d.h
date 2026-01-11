@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/10 23:31:45 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 20:34:23 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_mlx
 	void	*text_west;
 	void	*text_door1;
 	void	*text_door2;
+	void	*text_oia1;
+	void	*text_oia2;
 	char	*north_adr;
 	char	*north_adr2;
 	char	*east_adr;
@@ -68,6 +70,8 @@ typedef struct s_mlx
 	char	*west_adr;
 	char	*door1_adr;
 	char	*door2_adr;
+	char	*oia1_adr;
+	char	*oia2_adr;
 	int		img_wdth;
 	int		img_hght;
 	int		angle_x;
@@ -213,10 +217,12 @@ void	draw_column(t_map *data, int col, double distance, double side);
 
 //bonus
 void	init_minimap(t_map *data);
-int		mouse_mover(int x, t_map *data);
+int		mouse_mover(int x, int y, t_map *data);
 void	swap_img(t_map *data);
 void	init_img(t_mlx *mlx, t_map *data);
 int		close_window2(t_map *data);
 void	free_all2(t_mlx *mlx, t_map *data);
 void	door_dist(t_map *data);
+void	init_oia(t_mlx *mlx);
+void	oia_maker(t_mlx *mlx, t_map *data);
 #endif

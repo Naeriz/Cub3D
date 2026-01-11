@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 20:45:05 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/10 22:25:50 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 19:30:46 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,5 @@ void	swap_img(t_map *data)
 		data->mlx.address = mlx_get_data_addr(data->mlx.image, &data->mlx.bpp,
 				&data->mlx.line_b, &data->mlx.endian);
 		init_rays(&data->mlx, data);
-	}
-}
-
-void	init_img(t_mlx *mlx, t_map *data)
-{
-	if (!mlx->text_north || !mlx->north_adr)
-	{
-		printf("Error:\n xpm conversion failed\n");
-		free_all2(mlx, data);
-		exit(1);
 	}
 }

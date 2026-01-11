@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:15:33 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/10 22:27:15 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 20:01:20 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ void	mlx_free(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx, mlx->text_south);
 	if (mlx->text_west)
 		mlx_destroy_image(mlx->mlx, mlx->text_west);
+	if (mlx->text_oia1)
+		mlx_destroy_image(mlx->mlx, mlx->text_oia1);
+	if (mlx->text_oia2)
+		mlx_destroy_image(mlx->mlx, mlx->text_oia2);
+}
+
+void	free_all2(t_mlx *mlx, t_map *data)
+{
+	mlx_free(mlx);
 	if (mlx->image)
 		mlx_destroy_image(mlx->mlx, mlx->image);
 	if (mlx->window)
@@ -37,11 +46,6 @@ void	mlx_free(t_mlx *mlx)
 		mlx_destroy_display(mlx->mlx);
 		free(mlx->mlx);
 	}
-}
-
-void	free_all2(t_mlx *mlx, t_map *data)
-{
-	mlx_free(mlx);
 	free(data->textures->north);
 	free(data->textures->east);
 	free(data->textures->south);
