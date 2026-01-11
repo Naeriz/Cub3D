@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:38:37 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/11 20:32:05 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 21:19:42 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ void	draw_player(t_mlx *mlx, t_map *data, int x, int y)
 	else
 		img_data = mlx_get_data_addr(mlx->text_oia2, &bpp, &line_b, &endian);
 	pixels = (uint32_t *)img_data;
-	scale = 4;
+	scale = 2;
 	i = 0;
-	while (i < 64 / scale && (y + i) < 800)
+	while (i < 64 / scale && (y + i) < 200)
 	{
 		j = 0;
-		while (j < 64 / scale && (x + j) < 1000)
+		while (j < 64 / scale && (x + j) < 200)
 		{
-			color = pixels[(i * scale) * 64 + (j * scale)];
+			color = pixels[(i * scale) * (line_b / 4) + (j * scale)];
 			if ((color & 0xFF000000) == 0)
 				my_mlx_pixel_put(data, x + j, y + i, color);
 			j++;
@@ -109,16 +109,16 @@ void	init_minimap(t_map *data)
 	height = 200 / data->height;
 	width = 200 / data->width;
 	draw_map(data);
-	icon_size = 16;
+	icon_size = 32;
 	p_x = (data->player_x * width) - (icon_size / 2);
 	p_y = (data->player_y * height) - (icon_size / 2);
-	if (p_x < 5)
-		p_x = 5;
-	if (p_y < 5)
-		p_y = 5;
-	if (p_x + icon_size > 185)
-		p_x = 185 - icon_size;
-	if (p_y + icon_size > 185)
-		p_y = 185 - icon_size;
+	if (p_x < 3)
+		p_x = 3;
+	if (p_y < 3)
+		p_y = 3;
+	if (p_x + icon_size > 189)
+		p_x = 189 - icon_size;
+	if (p_y + icon_size > 189)
+		p_y = 189 - icon_size;
 	draw_player(&data->mlx, data, p_x, p_y);
 }

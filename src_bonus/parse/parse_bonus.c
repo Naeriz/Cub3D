@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:47:14 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/08 13:38:17 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/11 21:21:29 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	parse_line(char *line, t_map *data)
 		}
 		return (2);
 	}
+	printf("Error\nUnknown identifier or invalid line at: %s", content);
 	return (1);
 }
 
