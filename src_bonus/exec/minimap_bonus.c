@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:38:37 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/11 21:19:42 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 21:39:59 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,18 @@ void	draw_map(t_map *data)
 	}
 }
 
-void	draw_player(t_mlx *mlx, t_map *data, int x, int y)
+void	draw_player(t_mlx *mlx, t_map *d, int x, int y)
 {
-	char		*img_data;
 	uint32_t	*pixels;
 	int			i;
 	int			j;
 	uint32_t	color;
-	int			bpp;
-	int			line_b;
-	int			endian;
 	int			scale;
 
-	if (data->north == 1)
-		img_data = mlx_get_data_addr(mlx->text_oia1, &bpp, &line_b, &endian);
+	if (d->north == 1)
+		pixels = (uint32_t *)mlx->oia1_adr;
 	else
-		img_data = mlx_get_data_addr(mlx->text_oia2, &bpp, &line_b, &endian);
-	pixels = (uint32_t *)img_data;
+		pixels = (uint32_t *)mlx->oia2_adr;
 	scale = 2;
 	i = 0;
 	while (i < 64 / scale && (y + i) < 200)
@@ -89,9 +84,9 @@ void	draw_player(t_mlx *mlx, t_map *data, int x, int y)
 		j = 0;
 		while (j < 64 / scale && (x + j) < 200)
 		{
-			color = pixels[(i * scale) * (line_b / 4) + (j * scale)];
+			color = pixels[(i * scale) * (d->line_b / 4) + (j * scale)];
 			if ((color & 0xFF000000) == 0)
-				my_mlx_pixel_put(data, x + j, y + i, color);
+				my_mlx_pixel_put(d, x + j, y + i, color);
 			j++;
 		}
 		i++;

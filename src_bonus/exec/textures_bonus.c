@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/11 19:47:17 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 21:42:11 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ void	getadr(t_mlx *mlx, t_map *data)
 	mlx->door2_adr = mlx_get_data_addr(mlx->text_door2, &mlx->bpp,
 			&mlx->line_b, &mlx->endian);
 	mlx->oia1_adr = mlx_get_data_addr(mlx->text_oia1, &mlx->bpp,
-			&mlx->line_b, &mlx->endian);
+			&data->line_b, &mlx->endian);
 	mlx->oia2_adr = mlx_get_data_addr(mlx->text_oia2, &mlx->bpp,
-			&mlx->line_b, &mlx->endian);
+			&data->line_b, &mlx->endian);
 	if (!mlx->north_adr || !mlx->east_adr || !mlx->south_adr
 		|| !mlx->west_adr || !mlx->north_adr2 || !mlx->door1_adr
 		|| !mlx->door2_adr || !mlx->oia1_adr || !mlx->oia2_adr)

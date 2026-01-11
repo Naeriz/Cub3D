@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/11 20:34:23 by sionow           ###   ########.fr       */
+/*   Updated: 2026/01/11 21:41:15 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_map
 	int			line_count;
 	char		*path;
 	t_textures	*textures;
+	int			line_b;
 	double		player_x;
 	double		player_y;
 	char		player_dir;
