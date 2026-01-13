@@ -18,9 +18,9 @@ int	is_valid_door_position(t_map *data, int x, int y)
 	int	horizontal;
 
 	horizontal = (get_char_safe(data, x - 1, y) == '1')
-		&& get_char_safe(data, x + 1, y);
+		&& (get_char_safe(data, x + 1, y) == '1)';
 	vertical = (get_char_safe(data, x, y - 1) == '1')
-		&& get_char_safe(data, x, y + 1);
+		&& (get_char_safe(data, x, y + 1) == '1');
 	if (horizontal || vertical)
 		return (1);
 	return (0);
