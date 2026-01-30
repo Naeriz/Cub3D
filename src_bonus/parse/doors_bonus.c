@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:06:37 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/08 13:38:05 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/01/30 18:17:11 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_valid_door_position(t_map *data, int x, int y)
 	int	horizontal;
 
 	horizontal = (get_char_safe(data, x - 1, y) == '1')
-		&& (get_char_safe(data, x + 1, y) == '1)';
+		&& (get_char_safe(data, x + 1, y) == '1');
 	vertical = (get_char_safe(data, x, y - 1) == '1')
 		&& (get_char_safe(data, x, y + 1) == '1');
 	if (horizontal || vertical)
