@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/11 21:41:15 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/01 12:24:55 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ typedef struct s_ray
 int		check_extension(char *path);
 int		parse_args(t_map *map, char **av);
 char	*skip_spaces(char *line);
+int		is_valid_num_str(char *str);
+int		parse_rgb_parts(char **parts, int *rgb);
 
 //init.c
 void	init_textures(t_textures *textures);

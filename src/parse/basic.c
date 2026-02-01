@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:23:19 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/04 17:35:08 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/01 12:24:29 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,42 @@ char	*skip_spaces(char *line)
 	while (*line == ' ' || *line == '\t')
 		line++;
 	return (line);
+}
+
+int	is_valid_num_str(char *str)
+{
+	int	i;
+	int	digit_found;
+
+	i = 0;
+	digit_found = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		digit_found = 1;
+		i++;
+	}
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (!digit_found || str[i] != '\0')
+		return (0);
+	return (1);
+}
+
+int	parse_rgb_parts(char **parts, int *rgb)
+{
+	int	i;
+
+	if (!parts[0] || !parts[1] || !parts[2] || parts[3])
+		return (1);
+	i = 0;
+	while (i < 3)
+	{
+		if (!is_valid_num_str(parts[i]))
+			return (1);
+		rgb[i] = ft_atoi(parts[i]);
+		i++;
+	}
+	return (0);
 }

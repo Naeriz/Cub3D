@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 09:52:31 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/08 13:38:08 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/01 11:55:48 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,11 @@ int	check_walls(t_map *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (ft_strchr("0NSEW", data->map[y][x]))
+			if (ft_strchr("0NSEWD", data->map[y][x])
+				&& is_enclosed(data, x, y))
 			{
-				if (is_enclosed(data, x, y))
-				{
-					printf("Error\n map is not enclosed at x: %d, y: %d\n",
-						x, y);
-					return (1);
-				}
+				printf("Error\nMap is not enclosed at x: %d, y: %d\n", x, y);
+				return (1);
 			}
 			x++;
 		}

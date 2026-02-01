@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:44:50 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/08 13:38:25 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/01 12:25:59 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ void	remove_newline(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
+	if (!str)
+		return ;
+	i = ft_strlen(str) - 1;
+	while (i >= 0 && (str[i] == '\n' || str[i] == '\r'
+			|| str[i] == ' ' || str[i] == '\t'))
 	{
-		if (str[i] == '\n')
-		{
-			str[i] = '\0';
-			return ;
-		}
-		i++;
+		str[i] = '\0';
+		i--;
 	}
 }
 
@@ -95,24 +94,19 @@ int	fill_color(int *color, char *line)
 	int		rgb[3];
 
 	if (*color != -1)
-		return (printf("Error\nduplicate color defined\n"), 1);
+		return (printf("Error\nDuplicate color defined\n"), 1);
 	line++;
-	while (*line == ' ')
+	while (*line && (*line == ' ' || *line == '\t'))
 		line++;
 	parts = ft_split(line, ',');
 	if (!parts)
 		return (1);
-	if (!parts[0] || !parts[1] || !parts[2] || parts[3])
+	if (parse_rgb_parts(parts, rgb) || check_rgb_values(rgb))
 	{
 		free_tab(parts);
-		return (printf("Error\nInvalid color format\n"), 1);
+		return (printf("Error\nInvalid color format or value\n"), 1);
 	}
-	rgb[0] = ft_atoi(parts[0]);
-	rgb[1] = ft_atoi(parts[1]);
-	rgb[2] = ft_atoi(parts[2]);
 	free_tab(parts);
-	if (check_rgb_values(rgb))
-		return (1);
 	*color = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 	return (0);
 }

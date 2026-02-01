@@ -4,14 +4,15 @@ NO inc/north.xpm
 
 SO inc/south.xpm
 
-WE inc/west.xpm
+WE inc/west.xpm    			
 
-C 255    ,182	,	193
+C 255,182,193
 F 0,0,0
 
 111111111
 1001
-100011111	1
+100011111
+
 101000001
 1100N0001
 111111111
