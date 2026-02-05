@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:23:19 by amezoe            #+#    #+#             */
-/*   Updated: 2026/02/01 12:24:29 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/05 11:57:56 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	is_valid_num_str(char *str)
 		digit_found = 1;
 		i++;
 	}
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\n' || str[i] == '\r'))
 		i++;
 	if (!digit_found || str[i] != '\0')
 		return (0);
