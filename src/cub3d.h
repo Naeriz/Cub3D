@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/02/01 12:24:55 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/06 16:57:44 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,12 @@ int		parse_args(t_map *map, char **av);
 char	*skip_spaces(char *line);
 int		is_valid_num_str(char *str);
 int		parse_rgb_parts(char **parts, int *rgb);
+
+//normthings.c
+int		longest_line(char **map, int height);
+void	fill_new_row(char *new_row, char *old, int width);
+char	**alloc_square(t_map *data);
+int		make_it_square(t_map *data);
 
 //init.c
 void	init_textures(t_textures *textures);

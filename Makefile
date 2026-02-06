@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sionow <sionow@student.42.fr>              +#+  +:+       +#+         #
+#    By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 08:54:24 by amezoe            #+#    #+#              #
-#    Updated: 2026/01/11 19:38:46 by sionow           ###   ########.fr        #
+#    Updated: 2026/02/06 16:24:04 by amezoe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,11 @@ BONUS_PARSE =	$(BONUSPARSEDIR)/basic_bonus.c $(BONUSPARSEDIR)/init_bonus.c $(BON
 				$(BONUSPARSEDIR)/tabs_spaces_bonus.c $(BONUSPARSEDIR)/free_bonus.c $(BONUSPARSEDIR)/fake_floodfill_bonus.c\
 				$(BONUSPARSEDIR)/doors_bonus.c
 
+
 PARSE		=	$(PARSEDIR)/basic.c $(PARSEDIR)/init.c $(PARSEDIR)/parse.c \
 				$(PARSEDIR)/utils.c $(PARSEDIR)/parse_map.c $(PARSEDIR)/validate.c \
 				$(PARSEDIR)/tabs_spaces.c $(PARSEDIR)/free.c $(PARSEDIR)/fake_floodfill.c\
+				$(PARSEDIR)/normthings.c
 
 
 SRCS		=	$(SRCSDIR)/main.c $(EXEC) $(PARSE)

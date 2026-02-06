@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:23:22 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/06 14:05:51 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/06 16:50:45 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,7 @@ int	parse_map(t_map *data, char *first_line)
 		data->map = NULL;
 		return (1);
 	}
+	if (make_it_square(data))
+		return (free_tab(data->map), 1);
 	return (0);
 }

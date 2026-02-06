@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:37:24 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/06 14:14:53 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/06 15:55:09 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ int	main(int ac, char **av)
 	{
 		free_data(&data);
 		return (1);
+	}
+	printf("MAP IS:\n");
+	for (size_t i = 0; data.map[i]; i++) {
+		for (size_t j = 0; j < ft_strlen(data.map[i]); j++) {
+			if (data.map[i][j] == ' ') {
+				printf("M");
+			} else {
+				printf("%c", data.map[i][j]);
+			}
+		}
+		printf("\n");
 	}
 	init_mlx(&mlx, &data);
 	init_rays(&mlx, &data);
