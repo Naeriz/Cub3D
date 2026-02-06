@@ -6,7 +6,7 @@
 /*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 09:52:31 by amezoe            #+#    #+#             */
-/*   Updated: 2026/01/06 14:04:26 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/06 09:11:07 by amezoe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,17 @@ int	check_walls(t_map *data)
 	int	y;
 
 	y = 0;
-	while (data->map[y])
+	while (y < data->height)
 	{
+		if (ft_strlen(data->map[y]) == 0)
+			return (printf("Error\nMap contains empty line at row %d\n", y), 1);
 		x = 0;
 		while (data->map[y][x])
 		{
 			if (ft_strchr("0NSEW", data->map[y][x]))
 			{
 				if (is_enclosed(data, x, y))
-				{
-					printf("Error\n map is not enclosed at x: %d, y: %d\n",
-						x, y);
-					return (1);
-				}
+					return (printf("Error\nHole at %d,%d\n", x, y), 1);
 			}
 			x++;
 		}
