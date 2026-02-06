@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:38:37 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/11 21:39:59 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/06 18:19:07 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_map(t_map *data)
 			{
 				if (data->map[y][x] == '0' || data->map[y][x] > 50)
 					color = 0xFFFFFF;
-				else if (data->map[y][x] == '1')
+				else if (data->map[y][x] == '1' || data->map[y][x] == ' ')
 					color = data->textures->floor;
 			}
 			if (color != -1)
