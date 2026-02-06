@@ -6,11 +6,29 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 19:22:16 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/11 21:44:10 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/06 20:31:28 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../src/cub3d.h"
+
+void	nullsetter(t_mlx *mlx)
+{
+	mlx->north_adr = NULL;
+	mlx->north_adr2 = NULL;
+	mlx->east_adr = NULL;
+	mlx->south_adr = NULL;
+	mlx->west_adr = NULL;
+	mlx->text_oia1 = NULL;
+	mlx->text_oia2 = NULL;
+	mlx->text_north = NULL;
+	mlx->text_north2 = NULL;
+	mlx->text_east = NULL;
+	mlx->text_south = NULL;
+	mlx->text_west = NULL;
+	mlx->text_door1 = NULL;
+	mlx->text_door2 = NULL;
+}
 
 void	init_oia(t_mlx *mlx)
 {

@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:12:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/11 19:55:29 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/06 20:31:09 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,7 @@ void	graphic_init(t_mlx *mlx, t_map *data)
 void	init_mlx(t_mlx *mlx, t_map *data)
 {
 	mlx->mlx = mlx_init();
-	mlx->north_adr = NULL;
-	mlx->north_adr2 = NULL;
-	mlx->east_adr = NULL;
-	mlx->south_adr = NULL;
-	mlx->west_adr = NULL;
+	nullsetter(mlx);
 	init_oia(mlx);
 	if (!mlx->mlx)
 	{

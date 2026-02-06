@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/02/06 18:56:31 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/06 20:31:41 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,4 +234,5 @@ void	free_all2(t_mlx *mlx, t_map *data);
 void	door_dist(t_map *data);
 void	init_oia(t_mlx *mlx);
 void	oia_maker(t_mlx *mlx, t_map *data);
+void	nullsetter(t_mlx *mlx);
 #endif
