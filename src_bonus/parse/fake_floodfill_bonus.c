@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fake_floodfill_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amezoe <amezoe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 09:52:31 by amezoe            #+#    #+#             */
-/*   Updated: 2026/02/06 09:12:47 by amezoe           ###   ########.fr       */
+/*   Updated: 2026/02/08 02:43:13 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_walls(t_map *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (ft_strchr("0NSEW", data->map[y][x]))
+			if (ft_strchr("0NSEWD", data->map[y][x]))
 			{
 				if (is_enclosed(data, x, y))
 					return (printf("Error\nHole at %d,%d\n", x, y), 1);

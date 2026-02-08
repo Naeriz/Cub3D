@@ -6,11 +6,19 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 20:18:15 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/10 23:26:34 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/08 02:58:45 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../src/cub3d.h"
+
+void	normi(t_map *data)
+{
+	if (fmod(data->player_y, 1.0) < 0.001)
+		data->player_y += 0.01;
+	if (fmod(data->player_x, 1.0) < 0.001)
+		data->player_x += 0.01;
+}
 
 double	convert_dir(char dir)
 {

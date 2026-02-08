@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:04:46 by amezoe            #+#    #+#             */
-/*   Updated: 2026/02/06 20:31:41 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/08 02:31:14 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ int		key_press(int key, t_map *data);
 int		key_release(int key, t_map *data);
 
 //mlx_draw.c
+void	normi(t_map *data);
 void	my_mlx_pixel_put(t_map *data, int x, int y, int color);
 void	draw_column(t_map *data, int col, double distance, double side);
 
