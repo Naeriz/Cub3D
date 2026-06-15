@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/11 21:42:11 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/09 01:58:25 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ uint32_t	*tex_storage(t_map *data)
 		return ((uint32_t *)data->mlx.door1_adr);
 	else if (data->door == 2)
 		return ((uint32_t *)data->mlx.door2_adr);
-	if (data->player_dir == 'N' && data->north == 1)
+	if (data->player_dir == 'S' && data->north == 1)
 		return ((uint32_t *)data->mlx.north_adr);
-	else if (data->player_dir == 'N' && data->north == 2)
+	else if (data->player_dir == 'S' && data->north == 2)
 		return ((uint32_t *)data->mlx.north_adr2);
-	else if (data->player_dir == 'S')
+	else if (data->player_dir == 'N')
 		return ((uint32_t *)data->mlx.south_adr);
-	else if (data->player_dir == 'W')
-		return ((uint32_t *)data->mlx.west_adr);
 	else if (data->player_dir == 'E')
+		return ((uint32_t *)data->mlx.west_adr);
+	else if (data->player_dir == 'W')
 		return ((uint32_t *)data->mlx.east_adr);
 	return (0);
 }

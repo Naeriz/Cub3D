@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:03 by sionow            #+#    #+#             */
-/*   Updated: 2026/02/06 18:56:27 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/09 02:07:53 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	apply_text(t_map *data, int col, int y, double pos)
 		data->mlx.angle_y = 0;
 	else if (data->mlx.angle_y >= data->mlx.img_hght)
 		data->mlx.angle_y = data->mlx.img_hght - 1;
-	if (data->player_dir == 'N')
+	if (data->player_dir == 'S')
 		tex = (uint32_t *)data->mlx.north_adr;
-	else if (data->player_dir == 'S')
+	else if (data->player_dir == 'N')
 		tex = (uint32_t *)data->mlx.south_adr;
-	else if (data->player_dir == 'W')
-		tex = (uint32_t *)data->mlx.west_adr;
 	else if (data->player_dir == 'E')
+		tex = (uint32_t *)data->mlx.west_adr;
+	else if (data->player_dir == 'W')
 		tex = (uint32_t *)data->mlx.east_adr;
 	offset = (data->mlx.angle_y * data->mlx.img_wdth + data->mlx.angle_x);
 	if (offset >= 0 && offset < data->mlx.img_hght * data->mlx.img_wdth)

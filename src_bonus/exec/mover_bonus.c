@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:58:22 by sionow            #+#    #+#             */
-/*   Updated: 2026/02/08 02:31:41 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/08 03:41:10 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,13 @@ int	edger(t_map *d, int cur_x, int cur_y)
 
 	x = d->player_x;
 	y = d->player_y;
-	if (d->map[cur_y + 1][cur_x] == '1' && d->map[cur_y][cur_x - 1] == '1')
-		if (d->map[y - 1][x] == '1' && d->map[y][x + 1] == '1')
+	if (x == cur_x && y == cur_y)
+		return (0);
+	if ((x != cur_x) && (y != cur_y))
+	{
+		if (d->map[cur_y][x] == '1' && d->map[y][cur_x] == '1')
 			return (1);
-	if (d->map[cur_y + 1][cur_x] == '1' && d->map[cur_y][cur_x + 1] == '1')
-		if (d->map[y - 1][x] == '1' && d->map[y][x - 1] == '1')
-			return (1);
-	if (d->map[cur_y - 1][cur_x] == '1' && d->map[cur_y][cur_x - 1] == '1')
-		if (d->map[y + 1][x] == '1' && d->map[y][x + 1] == '1')
-			return (1);
-	if (d->map[cur_y - 1][cur_x] == '1' && d->map[cur_y][cur_x + 1] == '1')
-		if (d->map[y + 1][x] == '1' && d->map[y][x - 1] == '1')
-			return (1);
+	}
 	return (0);
 }
 

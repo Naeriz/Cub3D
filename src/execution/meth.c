@@ -6,7 +6,7 @@
 /*   By: sionow <sionow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:26:13 by sionow            #+#    #+#             */
-/*   Updated: 2026/01/10 23:15:45 by sionow           ###   ########.fr       */
+/*   Updated: 2026/02/09 02:15:28 by sionow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ double	final_distance(t_ray *ray, t_map *data, double ray_angle, double *side)
 		ray->wall_x = data->player_x + ray->dir_x * ray->distance;
 	}
 	ray->wall_x = ray->wall_x - floor(ray->wall_x);
-	if ((wall == 0 && ray->step_x == -1) || (wall == 1 && ray->step_y == -1))
+	if ((wall == 0 && ray->step_x == -1) || (wall == 1 && ray->step_y == 1))
 		ray->wall_x = 1 - ray->wall_x;
 	*side = ray->wall_x;
 	return (ray->distance * cos(ray_angle - ray->mlx.real_p_dir));
